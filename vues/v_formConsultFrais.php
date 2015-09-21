@@ -23,9 +23,9 @@
 <div name="droite" style="float:left;width:80%;">
 	<div name="haut" style="margin: 2 2 2 2 ;height:10%;float:left;"><h1>Suivi de remboursement des Frais</h1></div>	
 	<div name="bas" style="margin : 10 2 2 2;clear:left;background-color:77AADD;color:white;height:88%;">
-	<form name="formConsultFrais" method="post" action="chercheFrais.php">
+	<form name="formConsultFrais" method="post" action="chercheFrais.php" > <!--  -->
 		<h1> Période </h1>
-			<label class="titre">Mois/Année :</label> <input class="zone" type="text" name="dateConsult" size="12" />
+			<label class="titre">Mois/Année :</label> <input class="zone" type="text" name="dateConsult" size="12" OnClick="Submit();"/>
 		<p class="titre" />
 		<div style="clear:left;"><h2>Frais au forfait </h2></div>
 		<table style="color:white;" border="1">
