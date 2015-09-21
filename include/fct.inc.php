@@ -11,9 +11,9 @@
  * @return vrai ou faux 
  */
 function estConnecte(){
-    
-  return isset($_SESSION['idVisiteur']); // $_SESSION['id']
+  return isset($_SESSION['idVisiteur']); // $_SESSION['id']  
 }
+
 /**
  * Enregistre dans une variable session les infos d'un visiteur
  
@@ -21,10 +21,15 @@ function estConnecte(){
  * @param $nom
  * @param $prenom
  */
-function connecter($id,$nom,$prenom){
+function connecter($id,$nom,$prenom,$type){
+  
 	$_SESSION['idVisiteur']= $id; // $_SESSION['id']
 	$_SESSION['nom']= $nom;
 	$_SESSION['prenom']= $prenom;
+        $_SESSION['type']=$type;
+   
+        
+       
 }
 /**
  * Détruit la session active

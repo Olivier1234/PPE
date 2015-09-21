@@ -34,13 +34,14 @@ switch($action){
                          * }
                          * 
                          *      */
-                    
+                        
 			$id = $visiteur['id'];
 			$nom =  $visiteur['nom'];
 			$prenom = $visiteur['prenom'];
+                        $type=$visiteur['type'];
+                        connecter($id,$nom,$prenom,$type);
+                            include("vues/v_sommaire.php");
                         
-			connecter($id,$nom,$prenom);
-			include("vues/v_sommaire.php");
 		}
 		break;
 	}

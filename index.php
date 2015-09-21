@@ -5,10 +5,17 @@ include("vues/v_entete.php") ;
 session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
+$estConnecteComptable = estConnecteComptable();
 if(!isset($_REQUEST['uc']) || !$estConnecte){
      $_REQUEST['uc'] = 'connexion';
-}	 
-$uc = $_REQUEST['uc'];
+}
+if($_SESSION['type']=="comptable"){
+    echo "lol";
+    
+    
+    
+}
+else{
 switch($uc){
 	case 'connexion':{
 		include("controleurs/c_connexion.php");break;
@@ -18,7 +25,13 @@ switch($uc){
 	}
 	case 'etatFrais' :{
 		include("controleurs/c_etatFrais.php");break; 
+         
 	}
+        case "comptable" :{
+		include("controleurs/c_etatFrais.php");break; 
+         
+	}
+}
 }
 include("vues/v_pied.php") ;
 ?>
