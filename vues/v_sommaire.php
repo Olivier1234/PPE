@@ -32,7 +32,7 @@
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
                     </li>
                     <li class="smenu">
-                        <a href="index.php?uc=afficherMoisAnnee&action=saisirFrais" title="Afficher fiche mois ">Afficher fiche des mois/annee</a>
+                        <a href="index.php?uc=afficherMoisAnnee" title="Afficher fiche mois ">Afficher fiche des mois/annee</a>
                     </li>
                     
                 </ul>
