@@ -3,10 +3,15 @@ require_once("include/fct.inc.php");
 require_once ("include/class.pdogsb.inc.php");
 include("vues/v_entete.php") ;
 session_start();
+
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
 if(!isset($_REQUEST['uc']) || !$estConnecte){
      $_REQUEST['uc'] = 'connexion';
+    }
+else{
+
+include("vues/v_sommaire.php");
 }
 $uc = $_REQUEST['uc'];
 switch($uc){
@@ -22,7 +27,11 @@ switch($uc){
         case 'afficherMoisAnnee':{
                 include("vues/v_formConsultFrais.php");break;
         }
-            
+        case 'deconnexion':{
+                include("vues/v_deconnexion.php");
+                session_destroy();
+                break;
+        }
 }
 
 include("vues/v_pied.php") ;

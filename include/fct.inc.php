@@ -44,6 +44,9 @@ function deconnecter(){
  * @param $madate au format  jj/mm/aaaa
  * @return la date au format anglais aaaa-mm-jj
 */
+
+
+
 function dateFrancaisVersAnglais($maDate){
 	@list($jour,$mois,$annee) = explode('/',$maDate);
 	return date('Y-m-d',mktime(0,0,0,$mois,$jour,$annee));
@@ -65,6 +68,10 @@ function dateAnglaisVersFrancais($maDate){
  * @param $date au format  jj/mm/aaaa
  * @return le mois au format aaaamm
 */
+function getMoisAnnee(){
+    
+
+}
 function getMois($date){
 		@list($jour,$mois,$annee) = explode('/',$date);
 		if(strlen($mois) == 1){

@@ -14,8 +14,7 @@
 	<h2>Outils</h2>
 	<ul><li>Frais</li>
 		<ul>
-			<li><a href="formSaisieFrais.htm" >Nouveau</a></li>
-			<li><a href="formConsultFrais.htm">Consulter</a></li>
+
 		</ul>
 	</ul>
 </div>
@@ -25,7 +24,7 @@
 	<div name="bas" style="margin : 10 2 2 2;clear:left;background-color:77AADD;color:white;height:88%;">
 	<form name="formConsultFrais" method="post" action="chercheFrais.php" > <!--  -->
 		<h1> Période </h1>
-			<label class="titre">Mois/Année :</label> <input class="zone" type="text" name="dateConsult" size="12" OnClick="Submit();"/>
+			<label class="titre">Mois/Année :</label> <input class="zone" type="text" name="dateConsult" size="12" />
 		<p class="titre" />
 		<div style="clear:left;"><h2>Frais au forfait </h2></div>
 		<table style="color:white;" border="1">

@@ -24,7 +24,7 @@ switch($action){
 			$prenom = $visiteur['prenom'];
                         $type = $visiteur['typeVisiteur'];
                         connecter($id,$nom,$prenom,$type);
-                            include("vues/v_sommaire.php");
+                            
                         
 		}
 		break;

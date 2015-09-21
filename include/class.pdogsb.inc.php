@@ -61,7 +61,12 @@ class PdoGsb{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
-
+public function getMois(){
+		$req2 = "select mois from fichefrais";
+		$rs = PdoGsb::$monPdo->query($req2);
+		$ligne2 = $rs->fetch();
+		return $ligne2;
+	}
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments

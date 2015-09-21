@@ -7,7 +7,7 @@
     </h2>
     
        </div> <?php      
-        if(!$_SESSION['type'] == "comptable")
+        if($_SESSION['type'] == "commercial")
             {
                 ?>
                 <ul id="menuList">
@@ -25,8 +25,7 @@
                     </li>
                 </ul><?php
             }
-            
-            else {  ?>            
+            if($_SESSION['type'] == "comptable") {  ?>            
                  <ul id="menuList">
                     <li>
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
@@ -34,10 +33,17 @@
                     <li class="smenu">
                         <a href="index.php?uc=afficherMoisAnnee" title="Afficher fiche mois ">Afficher fiche des mois/annee</a>
                     </li>
-                    
+                    <li>
+                        <a href="formSaisieFrais.htm" >Nouveau</a>
+                    </li>
+                    <li>
+                        <a href="formConsultFrais.htm">Consulter</a>
+                    </li>
+                    <li>
+                        <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
+                    </li>
+                                    
                 </ul>
-                    
-                    
                    <?php } ?>
                     
                  
