@@ -6,7 +6,7 @@
  * @author Cheri Bibi
  * @version    1.0
  */
- /**
+ /** 
  * Teste si un quelconque visiteur est connecté
  * @return vrai ou faux 
  */
@@ -20,13 +20,14 @@ function estConnecte(){
  * @param $id 
  * @param $nom
  * @param $prenom
+ * @param $type
  */
 function connecter($id,$nom,$prenom,$type){
   
-	$_SESSION['idVisiteur']= $id; // $_SESSION['id']
-	$_SESSION['nom']= $nom;
-	$_SESSION['prenom']= $prenom;
-        $_SESSION['type']=$type;
+	$_SESSION['idVisiteur'] = $id; // $_SESSION['id']
+	$_SESSION['nom'] = $nom;
+	$_SESSION['prenom'] = $prenom;
+        $_SESSION['type'] = $type;
    
         
        
