@@ -7,6 +7,7 @@
     </h2>
     
        </div> <?php      
+       
         if($_SESSION['type'] == "commercial")
             {
                 ?>
@@ -31,7 +32,7 @@
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
                     </li>
                     <li class="smenu">
-                        <a href="index.php?uc=afficherMoisAnnee" title="Afficher fiche mois ">Afficher fiche des mois/annee</a>
+                        <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Afficher fiche mois ">Afficher fiche des mois/annee</a>
                     </li>
                     <li>
                         <a href="formSaisieFrais.htm" >Nouveau</a>

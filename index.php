@@ -9,9 +9,9 @@ $estConnecte = estConnecte();
 if(!isset($_REQUEST['uc']) || !$estConnecte){
      $_REQUEST['uc'] = 'connexion';
     }
-else{
-
-include("vues/v_sommaire.php");
+else
+    { 
+ 
 }
 $uc = $_REQUEST['uc'];
 switch($uc){
@@ -27,13 +27,9 @@ switch($uc){
         case 'afficherMoisAnnee':{
                 include("vues/v_formConsultFrais.php");break;
         }
-        case 'deconnexion':{
-                include("vues/v_deconnexion.php");
-                session_destroy();
-                break;
-        }
+         
+         
 }
 
 include("vues/v_pied.php") ;
 ?>
-//test

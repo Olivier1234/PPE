@@ -1,4 +1,5 @@
 ﻿<?php
+
 if(!isset($_REQUEST['action'])){
 	$_REQUEST['action'] = 'demandeConnexion';
 }
@@ -9,6 +10,7 @@ switch($action){
 		break;
 	}
 	case 'valideConnexion':{
+            
 		$login = $_REQUEST['login'];
 		$mdp = $_REQUEST['mdp'];
 		$visiteur = $pdo->getInfosVisiteur($login,$mdp);
@@ -17,18 +19,22 @@ switch($action){
 			ajouterErreur("Login ou mot de passe incorrect");
 			include("vues/v_erreurs.php");
 			include("vues/v_connexion.php");
+                        
 		}
 		else{
 			$id = $visiteur['id'];
 			$nom =  $visiteur['nom'];
 			$prenom = $visiteur['prenom'];
                         $type = $visiteur['typeVisiteur'];
-                        connecter($id,$nom,$prenom,$type);
-                            
-                        
+                        connecter($id,$nom,$prenom,$type);  
+                        include("vues/v_sommaire.php");   
 		}
 		break;
 	}
+        case 'deconnexion':{
+		include("vues/v_deconnexion.php");
+		break;
+        }
 	default :{
 		include("vues/v_connexion.php");
 		break;
