@@ -1,18 +1,18 @@
 ﻿ <div id="contenu">
       <h2>Mes fiches de frais</h2>
       <h3>Visiteur à sélectionner : </h3>
-      <form action="index.php?uc=etatFrais&action=voirEtatFrais" method="post">
+      <form action="index.php?uc=ValiderVisiteur&action=selectionnerMois" method="post">
       <div class="corpsForm">
          
       <p>
 	 
         <label for="lstMois" accesskey="n">Visiteur : </label>
-        <select id="lstMois" name="lstMois">
+        <select id="lstMois" name="idVisiteur">
             <?php
 			foreach ($listVisiteur as $unMois)
 			{
                             ?>
-				<option selected value="<?php echo $unMois  ?>"><?php echo  $unMois['nom']." ".$listVisiteur['prenom']."" ?> </option>
+				<option selected value="<?php echo $unMois["id"]  ?>" ><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
 				<?php 			
 			}
            

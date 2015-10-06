@@ -8,7 +8,7 @@
 	</style>
 </head>
 <body>
-<div name="gauche" style="clear:left:;float:left;width:18%; background-color:white; height:100%;">
+<div name="gauche" style="clear:left;float:left;width:18%; background-color:white; height:100%;">
 <div name="coin" style="height:10%;text-align:center;"><img src="logo.jpg" width="100" height="60"/></div>
 <div name="menu" >
 	<h2>Outils</h2>

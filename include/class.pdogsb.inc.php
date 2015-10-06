@@ -67,6 +67,29 @@ public function getMois(){
 		$ligne2 = $rs->fetch();
 		return $ligne2;
 	}
+        
+        public function getMoisEtat(){
+		
+		  
+		$req = "select fichefrais.mois as mois from  fichefrais where   idEtat='CR'
+		order by fichefrais.mois desc ";
+		$res = PdoGsb::$monPdo->query($req);
+		$lesMois =array();
+		$laLigne = $res->fetch();
+		while($laLigne != null)	{
+			$mois = $laLigne['mois'];
+			$numAnnee =substr( $mois,0,4);
+			$numMois =substr( $mois,4,2);
+			$lesMois["$mois"]=array(
+		     "mois"=>"$mois",
+		    "numAnnee"  => "$numAnnee",
+			"numMois"  => "$numMois"
+             );
+			$laLigne = $res->fetch(); 		
+		}
+		return $lesMois;
+	}
+	
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments
@@ -257,7 +280,27 @@ public function getMois(){
  * @return un tableau associatif de clé un mois -aaaamm- et de valeurs l'année et le mois correspondant 
 */
 	public function getLesMoisDisponibles($idVisiteur){
-		$req = "select fichefrais.mois as mois from  fichefrais where fichefrais.idvisiteur ='$idVisiteur' 
+		$req = "select fichefrais.mois as mois from  fichefrais where fichefrais.idvisiteur ='$idVisiteur'  
+		order by fichefrais.mois desc ";
+		$res = PdoGsb::$monPdo->query($req);
+		$lesMois =array();
+		$laLigne = $res->fetch();
+		while($laLigne != null)	{
+			$mois = $laLigne['mois'];
+			$numAnnee =substr( $mois,0,4);
+			$numMois =substr( $mois,4,2);
+			$lesMois["$mois"]=array(
+		     "mois"=>"$mois",
+		    "numAnnee"  => "$numAnnee",
+			"numMois"  => "$numMois"
+             );
+			$laLigne = $res->fetch(); 		
+		}
+		return $lesMois;
+	}
+        
+        public function getMoisValider($idVisiteur){
+		$req = "select fichefrais.mois as mois from  fichefrais where fichefrais.idvisiteur ='$idVisiteur'  and idEtat='CR'
 		order by fichefrais.mois desc ";
 		$res = PdoGsb::$monPdo->query($req);
 		$lesMois =array();
@@ -303,5 +346,12 @@ public function getMois(){
 		where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		PdoGsb::$monPdo->exec($req);
 	}
+         function getVisiteur(){
+            $listVisiteur = array();
+            $req = "select * from visiteur";
+            $res = PdoGsb::$monPdo->query($req);
+            $listVisiteur = $res->fetchall(); 
+            return $listVisiteur;
+}
 }
 ?>
