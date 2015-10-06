@@ -1,5 +1,5 @@
       <h3>Visiteur à sélectionner : </h3>
-      <form action="index.php?uc=ValiderVisiteur&action=selectionnerMois" method="post">
+      <form action="index.php?uc=ValiderVisiteur&action=historique" method="post">
       <div class="corpsForm">
          
       <p>
@@ -21,7 +21,10 @@
       </div>
       <div class="piedForm">
       <p>
-          <input type="hidden" name="lstMois" value="<?php $mois?>"> 
+          <input type="hidden" name="lstMois" value="<?php echo $mois?>">
+          <?php if (isset($idVisiteur)){?>
+          <input type="hidden" name="lstMois" value="<?php echo $idVisiteur?>
+              <?php }?>
         <input id="ok" type="submit" value="Valider" size="20" />
         <input id="annuler" type="reset" value="Effacer" size="20" />
       </p> 
