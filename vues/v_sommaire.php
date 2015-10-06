@@ -19,7 +19,7 @@
                         <a href="index.php?uc=gererFrais&action=saisirFrais" title="Saisie fiche de frais ">Saisie fiche de frais</a>
                     </li>
                     <li class="smenu">
-                        <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Consultation de mes fiches de frais">Mes fiches de frais</a>
+                        <a href="index.php?uc=ValiderVisiteur&action=selectionnerMois" title="Consultation de mes fiches de frais">Mes fiches de frais</a>
                     </li>
                     <li class="smenu">
                         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
@@ -32,13 +32,10 @@
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
                     </li>
                     <li class="smenu">
-                        <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Afficher fiche mois ">Afficher fiche des mois/annee</a>
+                        <a href="index.php?uc=ValiderVisiteur&action=historique" >Nouveau Frais</a>
                     </li>
                     <li>
-                        <a href="formSaisieFrais.htm" >Nouveau</a>
-                    </li>
-                    <li>
-                        <a href="formConsultFrais.htm">Consulter</a>
+                        <a href="index.php?uc=etatFrais&action=voirEtatFrais">Valider </a>
                     </li>
                     <li>
                         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>

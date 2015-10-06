@@ -24,9 +24,12 @@ switch($uc){
 	case 'etatFrais' :{
 		include("controleurs/c_etatFrais.php");break;        
 	}
-        case 'afficherMoisAnnee':{
-                include("vues/v_formConsultFrais.php");break;
+        case 'ValiderVisiteur':{
+                include("controleurs/c_historique.php");break;
         }
+ 
+        
+            
          
          
 }
