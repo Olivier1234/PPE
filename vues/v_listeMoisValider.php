@@ -9,22 +9,60 @@
         <label for="lstMois" accesskey="n">Mois : </label>
         <select id="lstMois" name="lstMois">
             <?php
+            
+            
+            if($_REQUEST['lstMois']){
 			foreach ($lesMois as $unMois)
 			{
                                 $mois = $unMois['mois'];
 				$numAnnee =  $unMois['numAnnee'];
 				$numMois =  $unMois['numMois'];
+                                if($_REQUEST['lstMois']==$mois){
 				if($mois == $moisASelectionner){
 				?>
-				<option selected value="<?php echo $mois ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
+				<option  value="<?php echo $mois ?>" selected><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+				else{ ?>
+				<option value="<?php echo $mois ?>"selected><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+                                }
+			
+                                else{
+                                if($mois == $moisASelectionner){
+				?>
+				<option  value="<?php echo $mois ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
 				else{ ?>
 				<option value="<?php echo $mois ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
-			
+                                }
 			}
+            }
+            else{
+                foreach ($lesMois as $unMois)
+			{
+                                $mois = $unMois['mois'];
+				$numAnnee =  $unMois['numAnnee'];
+				$numMois =  $unMois['numMois'];
+                               
+				if($mois == $moisASelectionner){
+				?>
+				<option selected value="<?php echo $mois ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+				else{ ?>
+				<option value="<?php echo $mois ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+                                
+			
+                               
+			}
+            }
            
 		   ?>    
             

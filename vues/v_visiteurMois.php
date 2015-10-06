@@ -7,13 +7,34 @@
         <label for="lstMois" accesskey="n">Visiteur : </label>
         <select id="lstMois" name="idVisiteur">
             <?php
-			foreach ($listVisiteur as $unMois)
-			{
+			
+            if($_REQUEST["idVisiteur"]) {
+               
+                foreach ($listVisiteur as $unMois)
+			{ 
+                    if($_REQUEST['idVisiteur']==$unMois["id"]){
                             ?>
-				<option selected value="<?php echo $unMois["id"]  ?>" ><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
+				<option  value="<?php echo $unMois["id"]  ?>" selected><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
+				<?php 			
+			} else{
+                            ?>
+				<option  value="<?php echo $unMois["id"]  ?>" ><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
 				<?php 			
 			}
-           
+                    }
+                   
+                            
+                    
+            }
+            else{
+                  foreach ($listVisiteur as $unMois)
+			{
+                            ?>
+				<option  value="<?php echo $unMois["id"]  ?>" ><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
+				<?php 			
+			}
+            }
+            
 		   ?>    
             
         </select>
