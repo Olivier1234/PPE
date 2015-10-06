@@ -1,5 +1,3 @@
-﻿ <div id="contenu">
-      <h2>Mes fiches de frais</h2>
       <h3>Visiteur à sélectionner : </h3>
       <form action="index.php?uc=ValiderVisiteur&action=selectionnerMois" method="post">
       <div class="corpsForm">
@@ -23,6 +21,7 @@
       </div>
       <div class="piedForm">
       <p>
+          <input type="hidden" name="lstMois" value="<?php $mois?>"> 
         <input id="ok" type="submit" value="Valider" size="20" />
         <input id="annuler" type="reset" value="Effacer" size="20" />
       </p> 

@@ -346,11 +346,10 @@ public function getMois(){
 		where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		PdoGsb::$monPdo->exec($req);
 	}
-         function getVisiteur(){
-            $listVisiteur = array();
-            $req = "select * from visiteur";
+         function getVisiteurMois($mois){
+            $req = "select visiteur.id,visiteur.nom,visiteur.prenom from visiteur ,fichefrais  where visiteur.id = fichefrais.idVisiteur and fichefrais.mois='".$mois."' and idEtat ='CR'";
             $res = PdoGsb::$monPdo->query($req);
-            $listVisiteur = $res->fetchall(); 
+            $listVisiteur = $res->fetchAll(); 
             return $listVisiteur;
 }
 }
