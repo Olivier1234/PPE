@@ -63,6 +63,3 @@
 		<p class="titre" /><label class="titre">&nbsp;</label><input class="zone"type="reset" /><input class="zone"type="submit" />
 	</form>
 	</div>
-</div>
-</body>
-</html>

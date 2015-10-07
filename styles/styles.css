@@ -1,27 +1,28 @@
 /* Styles des divisions principales de la page */
 body{
-  background-color: #77AADD;
-	background-image: url(imgs/FONDGLOBAL.jpg);
-	background-repeat: repeat-x;
-  margin:0% 0%;
-  padding : 0.6em;
-  font-family:"Trebuchet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
-  font-size:0.8em;
+    background-color: #77AADD;
+    background-image: url(imgs/FONDGLOBAL.jpg);
+    background-repeat: repeat-x;
+    margin:0% 0%;
+    padding : 0.6em;
+    font-family:"Trebuchet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size:0.8em;
 }
 #page {
-  background-color:white;
-  width : 70%;
-  margin : auto ;
-  border : 0.2em solid black;
-  padding : 0.1em;
-  height:97%;
+    background-color:white;
+    width : 70%;
+    margin-left : auto ;
+    margin-right : auto ;
+    border : 0.2em solid black;
+    padding : 0.1em;
+    height:96.5%;
 }
 #entete{
-  background-color:rgb(72,198,236);
-	color : #980101;
-	border: solid 0.1em #980101;
-	height: 154px;
-	padding: 0em;
+        background-color: rgba(218, 218, 188,0.5);
+        color: #353535;
+        border: solid 0.1em #A7A7A7;
+        height: 25%;
+        padding: 1em;
 	border-collapse: separate;
 }
 #pied{
@@ -43,24 +44,18 @@ body{
 }
 
 #contenu{
-	border: none;
-	padding: 1.3em;
-	background-color: white;
-	border-left :  groove 0.8em #980101;
-        margin-top : 1.2em;
-              margin-left: 18%;
-      /* permet de fixer une hauteur mini sur les navigateurs modernes */
-        min-height:27em;
-      /* pour obtenir le m�me effet sur IE, sachant que si le contenu d�passe, il
-      "poussera" la hauteur en ne respectant pas la norme. On se joue de ses lacunes
-      */
-        height:27em;
+    border: none;
+    padding: 1.0em;
+    background-color: white;
+    border-left: groove 0.8em #000099;
+    margin-left: 18%;
+    height: 99%;
 }
 
 /* pour r�tablir le mauvais effet sur les nav. modernes */
 html>body #contenu{
-  min-height:62%;
-  max-height:62%;
+  min-height:63.5%;
+  max-height:63.5%;
   overflow: auto; 
 }
 #contenu::-webkit-scrollbar {
@@ -109,12 +104,53 @@ ul#menuList a:hover {
   height : 152px;
 }
 
-#entete h1 {
-  margin : 1em;
-  margin-left:6em;
-  font-size : x-large;
-  text-align:center;
+#enH1 {
+    font-family: "Open Sans",lithos, sans-serif;
+    margin: 0.6em;
+    margin-right: 17%;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 3%;
 }
+#enH1_1 {
+    margin: 0.5em;
+    margin-right: 15%;
+    font-size: 22px;
+    text-align: center;
+}
+#coLabel{
+    font-size:17px;
+    margin-top:5px;
+    font-weight: lighter;
+    font-family: "Open Sans",minion pro, sans-serif;
+}
+#coP{
+    height: 12%;
+}
+
+#coInput{
+    width: 70%;
+    height: 26px;
+    margin-bottom: 5px;
+    float:right;
+}
+#coForm{
+    padding-top: 20px;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    
+}
+#vaInput{
+    background-color: rgba(0, 103, 204,0.7);
+    width: 70%;
+    height: 18%;
+    border-radius: 4px;
+    margin-top: 20px;
+}    
+
+
 
 #contenu pre {
   width:95%;
@@ -292,15 +328,17 @@ table.listeLegere th.libelle{
 }
 
 #contenu h2 {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	color: #1D2941;
-	text-decoration: none;
-	border : 1px solid #6988BE;
-	padding-left: 25px;
-	background-color: #E9F1FE;
-  height : 28px;
+    text-align: center;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1D2941;
+    text-decoration: none;
+    border: 1px solid #6988BE;
+    padding-left: 25px;
+    background-color: #E9F1FE;
+    height: auto;
+    padding: 5px;
 }
 
 #contenu img {
