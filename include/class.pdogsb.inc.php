@@ -351,6 +351,12 @@ public function getMois(){
             $res = PdoGsb::$monPdo->query($req);
             $listVisiteur = $res->fetchAll(); 
             return $listVisiteur;
-}
+        }
+   function supprimer($idVisteur,$mois,$montant){
+             $sql="select * from lignefraishorsforfaitrefuse where idVisiteur='".$idVisteur."' and mois='".$mois."' and montant='".$montant."' ;";
+            $res = PdoGsb::$monPdo->query($sql);
+            $listVisiteur = $res->fetchAll(); 
+            return $listVisiteur;
+        }
 }
 ?>
