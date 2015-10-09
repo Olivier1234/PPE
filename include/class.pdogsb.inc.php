@@ -358,5 +358,10 @@ public function getMois(){
             $listVisiteur = $res->fetchAll(); 
             return $listVisiteur;
         }
+        function addVisteurRefuse($idVisiteur,$mois,$libelle,$date,$montant){
+             $sql="insert into lignefraishorsforfaitrefuse values(null,'".$idVisiteur."','".$mois."','".$libelle."','".$date."','".$montant."'";
+            PdoGsb::$monPdo->exec($sql);
+        }
+ 
 }
 ?>

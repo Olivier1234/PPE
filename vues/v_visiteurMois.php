@@ -26,7 +26,8 @@
                             
                     
             }
-            else{
+    
+                else{
                   foreach ($listVisiteur as $unMois)
 			{
                             ?>
@@ -34,7 +35,6 @@
 				<?php 			
 			}
             }
-            
 		   ?>    
             
         </select>

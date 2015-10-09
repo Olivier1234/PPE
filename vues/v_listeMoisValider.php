@@ -10,21 +10,22 @@
         <select id="lstMois" name="lstMois">
             <?php
             
-            
+             
             if($_REQUEST['lstMois']){
+               
 			foreach ($lesMois as $unMois)
 			{
-                                $mois = $unMois['mois'];
+                                $moisValider = $unMois['mois'];
 				$numAnnee =  $unMois['numAnnee'];
 				$numMois =  $unMois['numMois'];
-                                if($_REQUEST['lstMois']==$mois){
-				if($mois == $moisASelectionner){
+                                if($_REQUEST['lstMois']==$moisValider){
+				if($moisValider == $moisASelectionner){
 				?>
-				<option  value="<?php echo $mois ?>" selected><?php echo  $numMois."/".$numAnnee ?> </option>
+				<option  value="<?php echo $moisValider ?>" selected><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
 				else{ ?>
-				<option value="<?php echo $mois ?>"selected><?php echo  $numMois."/".$numAnnee ?> </option>
+				<option value="<?php echo $moisValider ?>"selected><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
                                 }
@@ -32,17 +33,54 @@
                                 else{
                                 if($mois == $moisASelectionner){
 				?>
-				<option  value="<?php echo $mois ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
+				<option  value="<?php echo $moisValider ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
 				else{ ?>
-				<option value="<?php echo $mois ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
+				<option value="<?php echo $moisValider ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
                                 }
 			}
             }
+            elseif ( isset($moisC) )
+                {
+                
+                foreach ($lesMois as $unMois)
+			{
+                                $moisValider = $unMois['mois'];
+				$numAnnee =  $unMois['numAnnee'];
+				$numMois =  $unMois['numMois'];
+                                if($moisClic==$moisValider){
+				if($moisValider == $moisASelectionner){
+				?>
+				<option  value="<?php echo $moisValider ?>" selected><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+				else{ ?>
+				<option value="<?php echo $moisValider ?>"selected><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+                                }
+			
+                                else{
+                                if($moisValider == $moisASelectionner){
+				?>
+				<option  value="<?php echo $moisValider ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+				else{ ?>
+				<option value="<?php echo $moisValider ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
+				<?php 
+				}
+                                }
+			}
+            }
+            
+            
+            
             else{
+                
                 foreach ($lesMois as $unMois)
 			{
                                 $mois = $unMois['mois'];
@@ -69,5 +107,5 @@
         </select>
       </p>
       </div>
-       
+     
       </form>

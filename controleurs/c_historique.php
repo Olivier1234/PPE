@@ -11,14 +11,54 @@ switch($action){
 		// les mois étant triés décroissants
 		$lesCles = array_keys( $lesMois );
 		$moisASelectionner = $lesCles[0];
-		include("vues/v_listeMoisValider.php");
+                
+                if(isset($_SESSION['frais'])){
+                        $moisC=true; 
+                        $key=$_REQUEST['key'];
+                        $moisClic=$_SESSION['frais'][$key]['mois'];
+
+                     $idVisiteurclic=$_SESSION['frais'][$key]['idVisiteurClic'];
+                     $montant=$_SESSION['frais'][$key]['montant'];
+                     $date=$_SESSION['frais'][$key]['date'];
+                     $libelle=$_SESSION['frais'][$key]['libelle'];
+                           // $pdo->addVisteurRefuse($idVisiteur,$moisClic,$_SESSION['libelle'],$_SESSION['date'],$_SESSION['montant']);
+                    $listVisiteur=$pdo->getVisiteurMois($moisClic);
+                   
+                        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurclic,$moisClic);
+                        $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteurclic,$moisClic);
+                        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurclic,$moisClic);
+                        $numAnnee =substr( $moisClic,0,4);
+                        $numMois =substr( $moisClic,4,2);
+                        $libEtat = $lesInfosFicheFrais['libEtat'];
+                        $montantValide = $lesInfosFicheFrais['montantValide'];
+                        $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
+                        $dateModif =  $lesInfosFicheFrais['dateModif'];
+                        $dateModif =  dateAnglaisVersFrancais($dateModif); 
+                        include("vues/v_listeMoisVisiteur.php");
+                     
+                       include("vues/v_etatFraisComptable.php");
+                        
+                       
+                        unset($moisClic);
+                        unset($idVisiteurclic);
+                        unset($_SESSION['frais']);
+                         
+                    }
+                
+                
+                else{ 
+                    include("vues/v_listeMoisValider.php");
                 if(isset($_REQUEST['lstMois']))
                 {    
+                   
+                    
                     $mois =$_REQUEST['lstMois'];
                     $listVisiteur=$pdo->getVisiteurMois($mois);
                     include("vues/v_visiteurMois.php");
+                    
                     if(isset($_REQUEST['idVisiteur']))
                     {
+                       
                         $idVisiteur = $_REQUEST['idVisiteur'];
                         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
                         $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
@@ -30,14 +70,18 @@ switch($action){
                         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
                         $dateModif =  $lesInfosFicheFrais['dateModif'];
                         $dateModif =  dateAnglaisVersFrancais($dateModif);
+                      
                         include("vues/v_etatFraisComptable.php");
+                        
                     }
                 }
-                break;
+                }
         }
+                break;
+        
          
           case 'supprimer':{
-		
+                    
                 break;
         }
 }
