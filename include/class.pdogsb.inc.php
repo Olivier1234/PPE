@@ -402,6 +402,27 @@ public function getMois(){
             PdoGsb::$monPdo->exec($sql);
             
         }
+        
+        public function lstFraisValider(){
+ 		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'VA' "
+                        . "order by id,mois ";
+		$res = PdoGsb::$monPdo->query($req);
+		$lstFraisV = $res->fetchall();
+		return $lstFraisV;           
+        }
+        public function lstFraisRembourser(){
+ 		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'RB' "
+                        . "order by dateModif desc,mois ";
+		$res = PdoGsb::$monPdo->query($req);
+		$lstFraisV = $res->fetchall();
+		return $lstFraisV;           
+        }
+        function Rembourser($id,$mois,$nbJustificatifs,$montantValide,$dateModifi,$idEtat){
+            $updateFR="update fichefrais set fichefrais.idEtat = 'RB' where idVisiteur ='$id' and fichefrais.mois = '$mois' and montantValide =$montantValide and fichefrais.nbJustificatifs = $nbJustificatifs and fichefrais.dateModif ='$dateModifi' and fichefrais.idEtat ='$idEtat'";
+            PdoGsb::$monPdo->exec($updateFR);
+            
+            
+    }
  
 }
 ?>

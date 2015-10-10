@@ -12,7 +12,7 @@
             {
                 ?>
                 <ul id="menuList">
-                    <li>
+                    <li class="smenu">
                         Visiteur :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
                     </li>
                     <li class="smenu">
@@ -32,12 +32,12 @@
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
                     </li>
                     <li class="smenu">
-                        <a href="index.php?uc=ValiderVisiteur&action=historique" >Nouveau Frais</a>
+                        <a href="index.php?uc=ValiderVisiteur&action=historique" >Valider fiches Frais</a>
                     </li>
-                    <li>
-                        <a href="index.php?uc=etatFrais&action=voirEtatFrais">Valider </a>
+                    <li class="smenu">
+                        <a href="index.php?uc=suiviFrais&action=listFrais">Rembousement des frais </a>
                     </li>
-                    <li>
+                    <li class="smenu">
                         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
                     </li>
                                     

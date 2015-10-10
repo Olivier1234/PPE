@@ -5,6 +5,10 @@ if(!isset($_REQUEST['action'])){
 }
 $action = $_REQUEST['action'];
 switch($action){
+        case 'accueil':{
+                include("vues/v_accueil.php");
+                break;
+        }
 	case 'demandeConnexion':{
 		include("vues/v_connexion.php");
 		break;
@@ -17,7 +21,8 @@ switch($action){
                 
 		if(!is_array( $visiteur) /* && !is_array( $comptable) */){  
 			ajouterErreur("Login ou mot de passe incorrect");
-			include("vues/v_erreurs.php");
+                        include("vues/v_erreurs.php");
+                        include("vues/v_connexion.php");
 		}
 		else{
 			$id = $visiteur['id'];
@@ -25,7 +30,8 @@ switch($action){
 			$prenom = $visiteur['prenom'];
                         $type = $visiteur['typeVisiteur'];
                         connecter($id,$nom,$prenom,$type);  
-                        include("vues/v_sommaire.php");   
+                        include("vues/v_sommaire.php"); 
+                        include("vues/v_accueil.php");
                     }
 		break;
 	}

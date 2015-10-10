@@ -28,6 +28,9 @@ switch($uc){
         case 'ValiderVisiteur':{
                 include("controleurs/c_historique.php");break;
         }
+        case 'suiviFrais':{
+                include("controleurs/c_suiviFrais.php");break;
+        }
  
         
             

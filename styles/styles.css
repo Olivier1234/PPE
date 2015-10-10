@@ -82,7 +82,7 @@ ul#menuList{
 /* style � appliquer aux �l�ments de la balise ul d'identifiant menulist */
 ul#menuList li {
     position:relative;
-    margin:0px;
+    margin:8px;
     padding:0px;
 }
 
@@ -150,7 +150,16 @@ ul#menuList a:hover {
     margin-top: 20px;
 }    
 
+#divSuivi{
+    width:100%;
+    min-width:80%;
+    
+}
 
+#pSuivi{
+    min-width:15%;
+    
+}
 
 #contenu pre {
   width:95%;
@@ -222,10 +231,14 @@ input:hover, textarea:hover, select:hover{
 /*  Le texte des messages d'erreur est de couleur rose sur fond ocre et de 
 taille de caract�res l�g�rement sup�rieure � la normale */
 .erreur{ 
-   background-color:rgb(237,210,229);
-   color:rgb(203,28,128);
-   font-size:1.1em;
-   width:95%;
+    color:rgb(203,28,128);
+    font-size:1.1em;
+    min-width: 300px;
+    height: 2%;
+    padding-bottom: 0%;
+    margin-left: 35%;
+    position: absolute;
+    margin-top: 3%;
 }
 .centre {
   text-align:center;
@@ -247,9 +260,22 @@ taille de caract�res l�g�rement sup�rieure � la normale */
   width:80%;
   font-size:1.2em;
 }
-
+#aDetail{
+    font-size: 1em; 
+    min-height:40px;
+    color:blue;
+    background-color: white;   
+    text-decoration: none;
+}
+#aDetail:hover{
+    font-size: 1em; 
+    min-height:40px;
+    color:black;
+    background-color: rgba(106, 175, 250, 0.6);  
+    text-decoration: none;
+}
 /* Style pour les liens de la page principale */
-#contenu a {
+/*#contenu a {
    font-size : 1.1em;
    color:gray;
    text-decoration:none;
@@ -257,8 +283,8 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 #contenu a:hover {
    text-decoration:underline;
    background-color : #D9BB7A;
-   font-size : 1em;
-}
+   font-size : 1.1em;
+}*/
 
 /* Style pour les parties importantes de la page principale */
 #contenu strong {
@@ -346,3 +372,5 @@ table.listeLegere th.libelle{
   float : left;
 
 }
+
+
