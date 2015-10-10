@@ -28,10 +28,10 @@
 				$quantite = $unFraisForfait['quantite'];
 		?>
                 
-               <td class="qteForfait"><input type="text" value="<?php echo $quantite?>" name="<?php echo $i?>"  </td>
+               <td class="qteForfait"><input type="text" value="<?php echo $quantite?>" name="<?php echo $i?>"> </td>
 		 <?php
           }
-		?>  <td><input type="submit"  value="Actualiser"</td>
+          ?>  <td><input type="submit"  value="Actualiser"></td>
 		</tr>
     </table> <?php if(isset($mois)){ ?>
      <input type="hidden" name="lstMois" value="<?php echo $mois?>">
@@ -101,6 +101,9 @@
              </tr>
        
     </table>
+       <a href="index.php?uc=ValiderVisiteur&action=Valider"> Valider </a>
+
+
   </div>
  
 
