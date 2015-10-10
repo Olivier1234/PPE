@@ -423,6 +423,19 @@ public function getMois(){
             
             
     }
+    
+    function valider($id,$mois,$total){
+            $updateVal="update fichefrais set idEtat ='VA' where idVisiteur='$id' and mois ='$mois'";
+            PdoGsb::$monPdo->exec($updateVal);
+            $updateVal="update fichefrais set montantValide=$total where idVisiteur ='$id' and mois='$mois'";
+            PdoGsb::$monPdo->exec($updateVal);   
+    }
+    
+    function justificatif($id,$mois,$nbJustificatif){
+            $updateVal="update fichefrais set nbJustificatifs=$nbJustificatif where idVisiteur='$id' and mois ='$mois'";
+            PdoGsb::$monPdo->exec($updateVal);
+           
+    }
  
 }
 ?>

@@ -11,14 +11,14 @@
             <?php
             
              
-            if($_REQUEST['lstMois']){
+            if($mois){
                
 			foreach ($lesMois as $unMois)
 			{
                                 $moisValider = $unMois['mois'];
 				$numAnnee =  $unMois['numAnnee'];
 				$numMois =  $unMois['numMois'];
-                                if($_REQUEST['lstMois']==$moisValider){
+                                if($mois==$moisValider){
 				if($moisValider == $moisASelectionner){
 				?>
 				<option  value="<?php echo $moisValider ?>" selected><?php echo  $numMois."/".$numAnnee ?> </option>

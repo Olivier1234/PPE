@@ -6,91 +6,48 @@ $action = $_REQUEST['action'];
 switch($action){
         case 'historique':{
 		$lesMois=$pdo->getMoisEtat();
-		// Afin de sélectionner par défaut le dernier mois dans la zone de liste
-		// on demande toutes les clés, et on prend la première,
-		// les mois étant triés décroissants
 		$lesCles = array_keys( $lesMois );
+                if(isset($_REQUEST['lstMois']))
+                {   
+                    $mois =$_REQUEST['lstMois'];  
+                }
 		$moisASelectionner = $lesCles[0];
-                
-                
-                
-               
-                    include("vues/v_listeMoisValider.php");
+                include("vues/v_listeMoisValider.php");
                 if(isset($_REQUEST['lstMois']))
                 {    
-                   
-                    
-                    $mois =$_REQUEST['lstMois'];
                     $listVisiteur=$pdo->getVisiteurMois($mois);
-                    include("vues/v_visiteurMois.php");
-                    
+                    include("vues/v_visiteurMois.php");                   
                     if(isset($_REQUEST['idVisiteur']))
-                    {
-                       
+                    {                     
                         $idVisiteur = $_REQUEST['idVisiteur'];
-                        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
-                        $supprimer = $pdo->supprimer($idVisiteur,$mois);
-                        $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
-                        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur,$mois);
-                        $numAnnee =substr( $mois,0,4);
-                        $numMois =substr( $mois,4,2);
-                        $libEtat = $lesInfosFicheFrais['libEtat'];
-                        $montantValide = $lesInfosFicheFrais['montantValide'];
-                        $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-                        $dateModif =  $lesInfosFicheFrais['dateModif'];
-                        $dateModif =  dateAnglaisVersFrancais($dateModif);
-                      
-                        include("vues/v_etatFraisComptable.php");
-                        
+                        include("vues/v_fonction.php");
+                        include("vues/v_etatFraisComptable.php");                        
                     }
-                }
-                
-        }
+                } 
                 break;
-        
-         
+             }
+                
+          
           case 'supprimer':{
-                    $lesMois=$pdo->getMoisEtat();
-		// Afin de sélectionner par défaut le dernier mois dans la zone de liste
-		// on demande toutes les clés, et on prend la première,
-		// les mois étant triés décroissants
-		$lesCles = array_keys( $lesMois );
-		$moisASelectionner = $lesCles[0];
-                
-                
-                       
-                        $key=$_REQUEST['key'];
-
-                     $moisClic=$_SESSION['frais'][$key]['mois'];
+                     $lesMois=$pdo->getMoisEtat();
+                     $lesCles = array_keys( $lesMois );
+                     $moisASelectionner = $lesCles[0];
+                     $key=$_REQUEST['key'];
+                     $mois=$_SESSION['frais'][$key]['mois'];
                      $idForfait=$_SESSION['frais'][$key]['idForfait'];
-                     $idVisiteurclic=$_SESSION['frais'][$key]['idVisiteurClic'];
+                     $idVisiteur=$_SESSION['frais'][$key]['idVisiteurClic'];
                      $montant=$_SESSION['frais'][$key]['montant'];
                      $dateA=$_SESSION['frais'][$key]['date'];
                      $libelle=$_SESSION['frais'][$key]['libelle'];
-                    
+                     $date=dateFrancaisVersAnglais($dateA);
+                     $pdo->addVisteurRefuse($idForfait,$idVisiteur,$mois,$libelle,$date,$montant);
+                     $listVisiteur=$pdo->getVisiteurMois($mois);
+                     
+                   include("vues/v_listeMoisValider.php");
+                   include("vues/v_visiteurMois.php");  
+                   include("vues/v_fonction.php");  
+                   include("vues/v_etatFraisComptable.php");
 
-                      $date=dateFrancaisVersAnglais($dateA);
-                     $pdo->addVisteurRefuse($idForfait,$idVisiteurclic,$moisClic,$libelle,$date,$montant);
-                     $listVisiteur=$pdo->getVisiteurMois($moisClic);
-                   
-                        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurclic,$moisClic);
-                        $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteurclic,$moisClic);
-                        $supprimer = $pdo->supprimer($idVisiteurclic,$moisClic);
-                        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurclic,$moisClic);
-                        $numAnnee =substr( $moisClic,0,4);
-                        $numMois =substr( $moisClic,4,2);
-                        $libEtat = $lesInfosFicheFrais['libEtat'];
-                        $montantValide = $lesInfosFicheFrais['montantValide'];
-                        $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-                        $dateModif =  $lesInfosFicheFrais['dateModif'];
-                        $dateModif =  dateAnglaisVersFrancais($dateModif); 
-                        
-                        include("vues/v_listeMoisVisiteur.php");
-                       include("vues/v_etatFraisComptable.php");
-                       
-                        unset($moisClic);
-                        unset($idVisiteurclic);
-                        unset($_SESSION['frais']);
   
                     
                 break;
@@ -98,105 +55,70 @@ switch($action){
         
          case 'actualiser':{
 		$lesMois=$pdo->getMoisEtat();
-		// Afin de sélectionner par défaut le dernier mois dans la zone de liste
-		// on demande toutes les clés, et on prend la première,
-		// les mois étant triés décroissants
 		$lesCles = array_keys( $lesMois );
-		$moisASelectionner = $lesCles[0];
-            
-                
+		$moisASelectionner = $lesCles[0];           
                 $mois =$_REQUEST['lstMois'];
-                 $idVisiteur = $_REQUEST['idVisiteur'];
-                    
+                 $idVisiteur = $_REQUEST['idVisiteur'];  
                 $zero=$_REQUEST['0'];
                 $un=$_REQUEST['1'];
                 $deux=$_REQUEST['2'];    
                 $trois=$_REQUEST['3'];
-                include("vues/v_listeMoisValider.php");
-              $pdo->actualiser($zero,$un,$deux,$trois,$idVisiteur,$mois);
-               
-                    
-                    $listVisiteur=$pdo->getVisiteurMois($mois);
-                    include("vues/v_visiteurMois.php");
-  
-                        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
-                        $supprimer = $pdo->supprimer($idVisiteur,$mois);
-                        $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
-                        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur,$mois);
-                        $numAnnee =substr( $mois,0,4);
-                        $numMois =substr( $mois,4,2);
-                        $libEtat = $lesInfosFicheFrais['libEtat'];
-                        $montantValide = $lesInfosFicheFrais['montantValide'];
-                        $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-                        $dateModif =  $lesInfosFicheFrais['dateModif'];
-                        $dateModif =  dateAnglaisVersFrancais($dateModif);
-                        
-                       include("vues/v_etatFraisComptable.php");
-                        
-                        unset($mois);
-                        unset($idVisiteur);
-                      
-                break;
-                
+                $pdo->actualiser($zero,$un,$deux,$trois,$idVisiteur,$mois);
+                $listVisiteur=$pdo->getVisiteurMois($mois);
+                include("vues/v_listeMoisValider.php");              
+                include("vues/v_visiteurMois.php");
+                include("vues/v_fonction.php");
+                include("vues/v_etatFraisComptable.php");
+                          
+                break;     
         }
         
          case 'reporter':{
-             
 		$lesMois=$pdo->getMoisEtat();
-		// Afin de sélectionner par défaut le dernier mois dans la zone de liste
-		// on demande toutes les clés, et on prend la première,
-		// les mois étant triés décroissants
 		$lesCles = array_keys( $lesMois );
 		$moisASelectionner = $lesCles[0];
-                
-                
-                 $key=$_REQUEST['key'];
-                 $moisClic=$_SESSION['frais'][$key]['mois'];
-                     $idForfait=$_SESSION['frais'][$key]['idForfait'];
-                     $idVisiteurclic=$_SESSION['frais'][$key]['idVisiteurClic'];
-                     $montant=$_SESSION['frais'][$key]['montant'];
-                     $dateA=$_SESSION['frais'][$key]['date'];
-                     $libelle=$_SESSION['frais'][$key]['libelle'];
-                     
-                     
-                  
-			$numAnnee =substr( $moisClic,0,4);
-			$numMois =substr( $moisClic,4,2);
-			
-                        if($numMois==12)
-                        {
-                            $numAnnee=$numAnnee+1;
-                            $numMois=1;
-                        }
-                        else{
-                            $numMois=$numMois+1;
-                        }
-                    
-                    $pdo->reporter($idForfait,$idVisiteurclic,$moisClic);
-               
-                    
-                    $listVisiteur=$pdo->getVisiteurMois($moisClic);
-                   
-                    
-                  
-                       
-                        
-                        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurclic,$moisClic);
-                        $supprimer = $pdo->supprimer($idVisiteurclic,$moisClic);
-                        $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteurclic,$moisClic);
-                        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurclic,$moisClic);
-                        $numAnnee =substr( $moisClic,0,4);
-                        $numMois =substr( $moisClic,4,2);
-                        $libEtat = $lesInfosFicheFrais['libEtat'];
-                        $montantValide = $lesInfosFicheFrais['montantValide'];
-                        $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-                        $dateModif =  $lesInfosFicheFrais['dateModif'];
-                        $dateModif =  dateAnglaisVersFrancais($dateModif);
-                     include("vues/v_listeMoisVisiteur.php");
-                       include("vues/v_etatFraisComptable.php");
-                        unset($moisClic);
-                        unset($idVisiteurclic);
-                        unset($_SESSION['frais']);
-                        break;
+                $key=$_REQUEST['key'];
+                $mois=$_SESSION['frais'][$key]['mois'];
+                $idForfait=$_SESSION['frais'][$key]['idForfait'];
+                $idVisiteur=$_SESSION['frais'][$key]['idVisiteurClic'];
+                $montant=$_SESSION['frais'][$key]['montant'];
+                $dateA=$_SESSION['frais'][$key]['date'];
+                $libelle=$_SESSION['frais'][$key]['libelle'];
+                $pdo->reporter($idForfait,$idVisiteur,$mois);
+                $listVisiteur=$pdo->getVisiteurMois($mois);
+                include("vues/v_listeMoisValider.php");
+                include("vues/v_visiteurMois.php");  
+                include("vues/v_fonction.php");
+                include("vues/v_etatFraisComptable.php");
+                break;
         }
+        
+        case 'Valider':{
+                $lesMois=$pdo->getMoisEtat();
+		$lesCles = array_keys( $lesMois );
+		$moisASelectionner = $lesCles[0];
+                $moisVal= $_REQUEST['mois'];
+                $idVisiteur= $_REQUEST['idVisiteur'];
+                include("vues/v_listeMoisValider.php");
+                $total=  $_REQUEST['total'];
+                $pdo->valider($idVisiteur,$moisVal,$total);     
+                break;           
+        }
+        
+        case 'justificatif':{
+                $lesMois=$pdo->getMoisEtat();
+		$lesCles = array_keys( $lesMois );
+		$moisASelectionner = $lesCles[0];
+                $mois= $_REQUEST['lstMois'];
+                $idVisiteur= $_REQUEST['idVisiteur']; 
+                $nbJustificatif= $_REQUEST['justificatif'];
+                include("vues/v_listeMoisValider.php");
+                $pdo->justificatif($idVisiteur,$mois,$nbJustificatif);    
+                $listVisiteur=$pdo->getVisiteurMois($mois);
+                include("vues/v_visiteurMois.php");
+                include("vues/v_fonction.php");
+                include("vues/v_etatFraisComptable.php");    
+                break;           
+        }
+
 }

@@ -23,9 +23,22 @@
 		</tr>
         <tr>
         <?php
+        $totalQuantite=0;
           foreach (  $lesFraisForfait as $i=>$unFraisForfait  ) 
 		  {
 				$quantite = $unFraisForfait['quantite'];
+                                if($i==0){
+                                    $totalQuantite=$totalQuantite+($quantite*110);
+                                }
+                                 if($i==1){
+                                    $totalQuantite=$totalQuantite+($quantite*0.62);
+                                }
+                                 if($i==2){
+                                    $totalQuantite=$totalQuantite+($quantite*80);
+                                }
+                                 if($i==3){
+                                    $totalQuantite=$totalQuantite+($quantite*25);
+                                }
 		?>
                 
                <td class="qteForfait"><input type="text" value="<?php echo $quantite?>" name="<?php echo $i?>"> </td>
@@ -33,10 +46,10 @@
           }
           ?>  <td><input type="submit"  value="Actualiser"></td>
 		</tr>
-    </table> <?php if(isset($mois)){ ?>
+    </table> 
      <input type="hidden" name="lstMois" value="<?php echo $mois?>">
           <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur?>">
-    <?php } ?> 
+  
 </form>
   	<table class="listeLegere">
   	   <caption>Descriptif des éléments hors forfait -<?php echo $nbJustificatifs ?> justificatifs reçus -
@@ -47,7 +60,7 @@
                 <th class='montant'>Montant</th>      
                 <th class='Action'>Action</th> 
              </tr>
-        <?php       
+        <?php     
         $_session['frais']=array();
           foreach ( $lesFraisHorsForfait as $key => $unFraisHorsForfait ) 
 		  { 
@@ -67,28 +80,24 @@
                         $_SESSION['frais'][$key]['date']=$date;
                         
 		?>
-             <tr>
-                
+             
+              <tr>
                 <td><?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
                 <td><?php echo $montant ?></td>
                 
-                <td> <a href="index.php?uc=ValiderVisiteur&action=supprimer&key=<?php echo $key;?>"> supprimer </a>
+                <td> <a href="index.php?uc=ValiderVisiteur&lstMois=<?php echo $mois?>&idVisiteur=<?php echo $idVisiteur?>&action=supprimer&key=<?php echo $key;?>"> supprimer </a>
                  <a href="index.php?uc=ValiderVisiteur&action=reporter&key=<?php echo $key;?>"> Reporter </a></td>
-                
-                  
-                
-                    <?php }
+              </tr>
+              <?php  $totalQuantite= $totalQuantite+$montant;
+
+                     }
+                     
                  foreach ( $supprimer as  $unsupprimer ) 
 		  { 
-                   
-                    
-                        
-			$date = $unsupprimer['date'];
+                	$date = $unsupprimer['date'];
 			$libelle = $unsupprimer['libelle'];
 			$montant = $unsupprimer['montant'];
-                      
-                     
 		?>
              <tr>
                  <?php  ;?>
@@ -96,12 +105,31 @@
                 <td><?php echo " refusé ".$libelle ?></td>
                 <td><?php echo $montant ?></td>
                 
-              <?php  } ?>
+              <?php  }  ?>
                             
              </tr>
        
     </table>
-       <a href="index.php?uc=ValiderVisiteur&action=Valider"> Valider </a>
+
+<form action="index.php?uc=ValiderVisiteur&action=justificatif" method="POST">
+           
+            <?php if(isset($mois)){ ?>
+                   <input type="hidden" name="lstMois" value="<?php echo $mois?>">
+                  <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur?>">
+
+            <?php } ?>
+            <label> nombre de justificatif : </label>
+            <input type="text" name="justificatif" value="<?php echo $nbJustificatifs?>">
+            <input type="submit" value="Ok" >
+</form></br>
+<form action="index.php?uc=ValiderVisiteur&action=Valider&total=<?php echo $totalQuantite;?>" method="POST">
+    
+    <?php if(isset($mois)){ ?>
+            <input type="hidden" name="mois" value="<?php echo $mois?>">
+          <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur?>">
+          <input type="submit" value="valider" >
+    <?php } ?>
+</form>
 
 
   </div>
