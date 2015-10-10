@@ -197,6 +197,6 @@ switch($action){
                         unset($moisClic);
                         unset($idVisiteurclic);
                         unset($_SESSION['frais']);
-      
+                        break;
         }
 }
