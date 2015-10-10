@@ -105,22 +105,20 @@ switch($action){
 		$moisASelectionner = $lesCles[0];
             
                 
-                    $mois =$_REQUEST['lstMois'];
-                    $idVisiteur = $_REQUEST['idVisiteur'];
+                $mois =$_REQUEST['lstMois'];
+                 $idVisiteur = $_REQUEST['idVisiteur'];
                     
                 $zero=$_REQUEST['0'];
                 $un=$_REQUEST['1'];
                 $deux=$_REQUEST['2'];    
                 $trois=$_REQUEST['3'];
+                include("vues/v_listeMoisValider.php");
               $pdo->actualiser($zero,$un,$deux,$trois,$idVisiteur,$mois);
                
                     
                     $listVisiteur=$pdo->getVisiteurMois($mois);
                     include("vues/v_visiteurMois.php");
-                    
-                  
-                       
-                        
+  
                         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
                         $supprimer = $pdo->supprimer($idVisiteur,$mois);
                         $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
@@ -132,16 +130,18 @@ switch($action){
                         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
                         $dateModif =  $lesInfosFicheFrais['dateModif'];
                         $dateModif =  dateAnglaisVersFrancais($dateModif);
-                      
-                       include("vues/v_listeMoisVisiteur.php");
+                        
                        include("vues/v_etatFraisComptable.php");
                         
-                    
-                
+                        unset($mois);
+                        unset($idVisiteur);
+                      
+                break;
                 
         }
         
          case 'reporter':{
+             
 		$lesMois=$pdo->getMoisEtat();
 		// Afin de sélectionner par défaut le dernier mois dans la zone de liste
 		// on demande toutes les clés, et on prend la première,
@@ -194,7 +194,7 @@ switch($action){
                         $dateModif =  dateAnglaisVersFrancais($dateModif);
                      include("vues/v_listeMoisVisiteur.php");
                        include("vues/v_etatFraisComptable.php");
-                      unset($moisClic);
+                        unset($moisClic);
                         unset($idVisiteurclic);
                         unset($_SESSION['frais']);
       

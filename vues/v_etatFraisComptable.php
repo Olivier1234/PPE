@@ -33,10 +33,10 @@
           }
 		?>  <td><input type="submit"  value="Actualiser"</td>
 		</tr>
-    </table> 
+    </table> <?php if(isset($mois)){ ?>
      <input type="hidden" name="lstMois" value="<?php echo $mois?>">
           <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur?>">
-             
+    <?php } ?> 
 </form>
   	<table class="listeLegere">
   	   <caption>Descriptif des éléments hors forfait -<?php echo $nbJustificatifs ?> justificatifs reçus -
