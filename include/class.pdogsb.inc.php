@@ -352,15 +352,55 @@ public function getMois(){
             $listVisiteur = $res->fetchAll(); 
             return $listVisiteur;
         }
-   function supprimer($idVisteur,$mois,$montant){
-             $sql="select * from lignefraishorsforfaitrefuse where idVisiteur='".$idVisteur."' and mois='".$mois."' and montant='".$montant."' ;";
-            $res = PdoGsb::$monPdo->query($sql);
-            $listVisiteur = $res->fetchAll(); 
-            return $listVisiteur;
+   function supprimer($idVisteur,$mois){
+             $sql="select * from lignefraishorsforfaitrefuse where idVisiteur='".$idVisteur."' and mois='".$mois."';";
+		$res = PdoGsb::$monPdo->query($sql);
+		$lesLignes = $res->fetchAll();
+		$nbLignes = count($lesLignes);
+		for ($i=0; $i<$nbLignes; $i++){
+			$date = $lesLignes[$i]['date'];
+			$lesLignes[$i]['date'] =  dateAnglaisVersFrancais($date);
+		}
+		return $lesLignes; 
         }
-        function addVisteurRefuse($idVisiteur,$mois,$libelle,$date,$montant){
-             $sql="insert into lignefraishorsforfaitrefuse values(null,'".$idVisiteur."','".$mois."','".$libelle."','".$date."','".$montant."'";
+        function addVisteurRefuse($id,$idVisiteur,$mois,$libelle,$date,$montant){
+        
+             $sql="insert into lignefraishorsforfaitrefuse values($id,'$idVisiteur','$mois','$libelle','$date',$montant)";
             PdoGsb::$monPdo->exec($sql);
+        }
+        
+         function actualiser($zero,$un,$deux,$trois,$idVisiteur,$mois){
+        
+             $sql="update lignefraisforfait set quantite=$zero where idVisiteur='$idVisiteur' and mois='$mois' and idFraisForfait='ETP'";
+            PdoGsb::$monPdo->exec($sql);
+            
+             $sql="update lignefraisforfait set quantite=$un where idVisiteur='$idVisiteur' and mois='$mois' and idFraisForfait='KM'";
+            PdoGsb::$monPdo->exec($sql);
+            
+             $sql="update lignefraisforfait set quantite=$deux where idVisiteur='$idVisiteur' and mois='$mois' and idFraisForfait='NUI'";
+            PdoGsb::$monPdo->exec($sql);
+            
+             $sql="update lignefraisforfait set quantite=$trois where idVisiteur='$idVisiteur' and mois='$mois' and idFraisForfait='REP'";
+            PdoGsb::$monPdo->exec($sql);
+        }
+        
+        function reporter($id,$idVisiteur,$mois){
+            
+			$numAnnee =substr( $mois,0,4);
+			$numMois =substr( $mois,4,2);
+			
+                        if($numMois==12)
+                        {
+                            $numAnnee=$numAnnee+1;
+                            $numMois=1;
+                        }
+                        else{
+                            $numMois=$numMois+1;
+                        }
+		     
+             $sql="update lignefraishorsforfait set mois='".$numAnnee.$numMois."' where idVisiteur='$idVisiteur' and mois='$mois' and id=$id";
+            PdoGsb::$monPdo->exec($sql);
+            
         }
  
 }

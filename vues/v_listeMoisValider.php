@@ -43,42 +43,7 @@
                                 }
 			}
             }
-            elseif ( isset($moisC) )
-                {
-                
-                foreach ($lesMois as $unMois)
-			{
-                                $moisValider = $unMois['mois'];
-				$numAnnee =  $unMois['numAnnee'];
-				$numMois =  $unMois['numMois'];
-                                if($moisClic==$moisValider){
-				if($moisValider == $moisASelectionner){
-				?>
-				<option  value="<?php echo $moisValider ?>" selected><?php echo  $numMois."/".$numAnnee ?> </option>
-				<?php 
-				}
-				else{ ?>
-				<option value="<?php echo $moisValider ?>"selected><?php echo  $numMois."/".$numAnnee ?> </option>
-				<?php 
-				}
-                                }
-			
-                                else{
-                                if($moisValider == $moisASelectionner){
-				?>
-				<option  value="<?php echo $moisValider ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
-				<?php 
-				}
-				else{ ?>
-				<option value="<?php echo $moisValider ?>"><?php echo  $numMois."/".$numAnnee ?> </option>
-				<?php 
-				}
-                                }
-			}
-            }
-            
-            
-            
+
             else{
                 
                 foreach ($lesMois as $unMois)

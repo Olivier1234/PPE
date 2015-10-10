@@ -83,7 +83,7 @@
       </div>
       <div class="piedForm">
       <p>
-          <input type="hidden" name="lstMois" value="<?php echo $idVisiteurclic?>">
+          <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteurclic?>">
           <input type="hidden" name="lstMois" value="<?php echo $moisValider?>">
           
       </p> 

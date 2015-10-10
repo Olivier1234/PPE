@@ -44,7 +44,7 @@
       <p>
           <input type="hidden" name="lstMois" value="<?php echo $mois?>">
           <?php if (isset($idVisiteur)){?>
-          <input type="hidden" name="lstMois" value="<?php echo $idVisiteur?>">
+          <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur?>">
               <?php }?>
       </p> 
       </div>
