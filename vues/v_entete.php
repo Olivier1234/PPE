@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="page">
-      <div id="entete">
+      <div id="entete" style="background-image: url(./images/header.jpg)">
         <img src="./images/logo.png" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
         <h1 id="enH1"> GSB - Frais</h1>
         <h1 id="enH1_1"> Gestion de remboursement des frais</h1>

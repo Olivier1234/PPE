@@ -94,7 +94,7 @@ ul#menuList a {
     width:100%;
 }
 ul#menuList a:hover {
-    background: rgb(0,85,227);
+    
     color: white;
 }
 
@@ -296,12 +296,11 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 
 /* Styles pour les tableaux de la page principale */
 #contenu table {
-    background-color:#FFF;
-    border : 0.1em solid #777777;
-    color:black;
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
+   background-color:#FFF;
+   border : 0.1em solid #777777;
+   color:black;
+   margin-right : auto ;
+   margin-left:0.3em;
    border-collapse : collapse;
 }
 
