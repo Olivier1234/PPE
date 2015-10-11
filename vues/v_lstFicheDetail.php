@@ -55,7 +55,23 @@
                 <td><?php echo $montant ?></td>                           
              </tr>
         <?php 
-          }?>
+          }
+          foreach ( $supprimer as  $unsupprimer ) 
+		  { 
+                	$date = $unsupprimer['date'];
+			$libelle = $unsupprimer['libelle'];
+			$montant = $unsupprimer['montant'];
+		?>
+             <tr>
+                 
+                <td><?php echo $date ?></td>
+                <td><?php echo " refusé ".$libelle ?></td>
+                <td><?php echo $montant ?></td>
+                
+              
+                            
+             </tr>
+          <?php  }  ?>
     </table>
   </div>
 <form action="index.php?uc=suiviFrais&action=listFrais" method="POST">

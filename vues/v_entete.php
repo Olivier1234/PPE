@@ -5,12 +5,12 @@
     <title>Intranet du Laboratoire Galaxy-Swiss Bourdin</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="./images/logoH.ico" />
   </head>
   <body>
     <div id="page">
       <div id="entete">
-        <a href="index.php?uc=connexion&action=accueil"><img src="./images/logo.png" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" /></a>
+        <img src="./images/logo.png" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
         <h1 id="enH1"> GSB - Frais</h1>
         <h1 id="enH1_1"> Gestion de remboursement des frais</h1>
       </div>

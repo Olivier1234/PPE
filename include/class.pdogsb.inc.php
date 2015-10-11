@@ -403,15 +403,6 @@ public function getMois(){
             PdoGsb::$monPdo->exec($sql);
             
         }
-        
-        
-        function Rembourser($id,$mois,$nbJustificatifs,$montantValide,$dateModifi,$idEtat){
-            $updateFR="update fichefrais set fichefrais.idEtat = 'RB' where idVisiteur ='$id' and fichefrais.mois = '$mois' and montantValide =$montantValide and fichefrais.nbJustificatifs = $nbJustificatifs and fichefrais.dateModif ='$dateModifi' and fichefrais.idEtat ='$idEtat'";
-            PdoGsb::$monPdo->exec($updateFR);
-            
-            
-    }
-    
     function valider($id,$mois,$total,$date){
             $updateVal="update fichefrais set idEtat ='VA' where idVisiteur='$id' and mois ='$mois'";
             PdoGsb::$monPdo->exec($updateVal);
@@ -438,6 +429,22 @@ public function getMois(){
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
+         function changerInfosVisiteur($idVisiteur,$nom,$prenom,$ville,$cp,$adresse){
+     $sql="update visiteur set nom='$nom' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set prenom='$prenom' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set ville='$ville' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set cp='$cp' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set adresse='$adresse' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+ }
+        function Rembourser($id,$mois,$nbJustificatifs,$montantValide,$dateModifi,$idEtat){
+            $updateFR="update fichefrais set fichefrais.idEtat = 'RB' where idVisiteur ='$id' and fichefrais.mois = '$mois' and montantValide =$montantValide and fichefrais.nbJustificatifs = $nbJustificatifs and fichefrais.dateModif ='$dateModifi' and fichefrais.idEtat ='$idEtat'";
+            PdoGsb::$monPdo->exec($updateFR);
+        }
         public function dernierMois(){
 		$req = "select max(mois) as dernierMois from fichefrais";
 		$res = PdoGsb::$monPdo->query($req);
@@ -454,11 +461,18 @@ public function getMois(){
         }
         public function lstFraisRembourser(){
                 $mois = $this->dernierMois();
-                $mois = $mois -2;
+                $mois = $mois -1;
  		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'RB' and mois='".$mois."' order by dateModif desc,mois ";
                 $res = PdoGsb::$monPdo->query($req);
 		$lstFraisV = $res->fetchall();
 		return $lstFraisV;           
+        }
+        public function montantJust($id,$mois){
+                $req = "select sum(montant) as montantRe from lignefraishorsforfaitrefuse where idVisiteur='$id' and mois='$mois'";
+		$res = PdoGsb::$monPdo->query($req);
+		$laLigne = $res->fetch();
+                $ligne = $laLigne['montantRe'];
+		return $ligne;
         }
         function creerPDF(){
             $num = $_REQUEST['numeroPDF'];
@@ -478,7 +492,7 @@ public function getMois(){
             $ville = $infoV["ville"];
             $dateEmbauche = $infoV["dateEmbauche"];
             $typeVisiteur = $infoV["typeVisiteur"];
-            
+            $montantRefuse = $this->montantJust($id,$mois);
             $lesFraisHorsForfait = $this->getLesFraisHorsForfait($id,$mois);
             $lesFraisForfait= $this->getLesFraisForfait($id,$mois);
             $lesInfosFicheFrais = $this->getLesInfosFicheFrais($id,$mois);
@@ -512,13 +526,14 @@ public function getMois(){
                 $montantT[] = $quantite[$i] * $montant[$i] ;
             }
             //faux montant refuse
-            $vpdf['montRefuse']= 0;
+            $vpdf['montRefuse']= $montantRefuse;
             $vpdf['dateNow']= date("d/m/Y");
             $vpdf['montantT'] = $montantT;
             $vpdf['montant'] = $montant;
             $vpdf['quantite']=$quantite;
             $vpdf['libelle']=$libelle;
             $vpdf['id'] = $id;
+            $vpdf['euros'] = chr(128);
             $vpdf['nom'] = $nom;
             $vpdf['prenom'] = $prenom;
             $vpdf['mois'] = $mois;
@@ -537,7 +552,6 @@ public function getMois(){
         }
         function afficherPDF($vpdf){
             require('fpdf/mc_table.php');
-            
             $pdf=ob_get_clean();
             $pdf=new PDF_MC_Table();
             $pdf->AddPage();
@@ -546,7 +560,7 @@ public function getMois(){
             $pdf->SetXY(9, 15);  
             $pdf->RoundedRect(95, 54, 110, 35, 2, 'D');
             $pdf->SetXY(9, 40);
-            $pdf->MultiCell(80, 5, utf8_decode("Siège social :\nPhiladelphie, \nPennsylvanie, aux Etats-Unis\ngsb_galaxybourdin@gmail.com "), 0, "L", 0);
+            $pdf->MultiCell(80, 5, utf8_decode("Siège social : GSB\nPhiladelphie, \nPennsylvanie, Etats-Unis\ngsb_galaxybourdin@gmail.com "), 0, "L", 0);
             $pdf->SetXY(100, 57);
             $pdf->MultiCell(100,7,utf8_decode("Client :  ".$vpdf['nom']." ".$vpdf['prenom']."\nAdresse : ".$vpdf['adresse']."\nCode postal : ".$vpdf['cp']."\nVille : ".$vpdf['ville']), 0, "L", 0);
             $pdf->SetXY(9, 100);
@@ -556,40 +570,32 @@ public function getMois(){
             $pdf->SetXY(10, 110);
             $pdf->MultiCell(190,7, utf8_decode('Eléments forfaitisés'), 1, "L", 0);
             $pdf->Row2(array('Frais forfaitaires',utf8_decode('Quantité'),'Montant unitaire','Montant total'));
-            $pdf->Row2(array($vpdf['libelle'][0],utf8_decode($vpdf['quantite'][0]),$vpdf['montant'][0],$vpdf['montantT'][0]));
-            $pdf->Row2(array(utf8_decode($vpdf['libelle'][1]),utf8_decode($vpdf['quantite'][1]),$vpdf['montant'][1],$vpdf['montantT'][1]));
-            $pdf->Row2(array(utf8_decode($vpdf['libelle'][2]),utf8_decode($vpdf['quantite'][2]),$vpdf['montant'][2],$vpdf['montantT'][2]));
-            $pdf->Row2(array(utf8_decode($vpdf['libelle'][3]),utf8_decode($vpdf['quantite'][3]),$vpdf['montant'][3],$vpdf['montantT'][3]));
-            $pdf->SetXY(10, 160);
-            
+            $pdf->Row2(array($vpdf['libelle'][0],utf8_decode($vpdf['quantite'][0]),$vpdf['montant'][0],$vpdf['montantT'][0]." ".html_entity_decode($vpdf['euros'])));
+            $pdf->Row2(array(utf8_decode($vpdf['libelle'][1]),utf8_decode($vpdf['quantite'][1]),$vpdf['montant'][1],$vpdf['montantT'][1]." ".html_entity_decode($vpdf['euros'])));
+            $pdf->Row2(array(utf8_decode($vpdf['libelle'][2]),utf8_decode($vpdf['quantite'][2]),$vpdf['montant'][2],$vpdf['montantT'][2]." ".html_entity_decode($vpdf['euros'])));
+            $pdf->Row2(array(utf8_decode($vpdf['libelle'][3]),utf8_decode($vpdf['quantite'][3]),$vpdf['montant'][3],$vpdf['montantT'][3]." ".html_entity_decode($vpdf['euros'])));
+            $pdf->SetXY(10, 157);
             mysql_connect('localhost','root','');
             mysql_select_db('gsbv2');
             //First table: put all columns automatically
             $pdf->MultiCell(190,7, utf8_decode('Eléments hors forfait'), 1, "L", 0);
-            $pdf->AddCol('date',35,'','Date');
-            $pdf->AddCol('libelle',105,'Libelle');
-            $pdf->AddCol('montant',50,'Montant','R');
             $prop=array('HeaderColor'=>array(205,216,211),
                         'color1'=>array(255,255,255),
                         'color2'=>array(255,255,250),
                         'padding'=>2);
-            $pdf->Table("select date,libelle,montant from lignefraishorsforfait where idVisiteur ='".$vpdf['id']."' and mois='".$vpdf['mois']."'",$prop);
-            $pdf->SetXY(130, 200);
-            $pdf->MultiCell(70,7, utf8_decode("Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." $\nMontant refusé :".$vpdf['montRefuse']."\nFait le : ".$vpdf['dateNow'].""), 1, "R", 0);
+            $pdf->AddCol('date',35,'','Date');
+            $pdf->AddCol('libelle',105,'Libelle');
+            $pdf->AddCol('montant',50,'Montant','R');
+            $pdf->Table("select date,libelle,montant  from lignefraishorsforfait lf where lf.mois='".$vpdf['mois']."' and lf.idVisiteur='".$vpdf['id']."' "
+                    . "UNION ALL (select date,libelle,montant as idlfr from lignefraishorsforfaitrefuse lfr where lfr.mois='".$vpdf['mois']."' and lfr.idVisiteur='".$vpdf['id']."')",$prop);
+            $pdf->SetXY(10, 200);
+            $pdf->MultiCell(190,7, utf8_decode('Eléments hors forfait refusé'), 1, "L", 0);
+            $pdf->AddCol('date',35,'','Date');
+            $pdf->AddCol('libelle',105,'Libelle');
+            $pdf->AddCol('montant',50,'Montant','R');
+            $pdf->Table("select date,libelle,montant  from lignefraishorsforfaitrefuse where mois='".$vpdf['mois']."' and idVisiteur='".$vpdf['id']."'",$prop);
+            $pdf->SetXY(130, 230);
+            $pdf->MultiCell(70,7,"Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." ".html_entity_decode($vpdf['euros'])."\nNombre de justificatifs : ".$vpdf['nbJust']." ".utf8_decode("\nMontant refusé :").$vpdf['montRefuse']." ".html_entity_decode($vpdf['euros'])."\nFait le : ".$vpdf['dateNow']."", 1, "R", 0);
             $pdf->Output();
         }
- function changerInfosVisiteur($idVisiteur,$nom,$prenom,$ville,$cp,$adresse){
-     $sql="update visiteur set nom='$nom' where id='$idVisiteur'";
-      PdoGsb::$monPdo->exec($sql);   
-      $sql="update visiteur set prenom='$prenom' where id='$idVisiteur'";
-      PdoGsb::$monPdo->exec($sql);   
-      $sql="update visiteur set ville='$ville' where id='$idVisiteur'";
-      PdoGsb::$monPdo->exec($sql);   
-      $sql="update visiteur set cp='$cp' where id='$idVisiteur'";
-      PdoGsb::$monPdo->exec($sql);   
-      $sql="update visiteur set adresse='$adresse' where id='$idVisiteur'";
-      PdoGsb::$monPdo->exec($sql);   
-      
- }
 }
-?>

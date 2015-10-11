@@ -23,6 +23,7 @@ switch($action){
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($id,$mois);
             $lesFraisForfait= $pdo->getLesFraisForfait($id,$mois);
             $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($id,$mois);
+            $supprimer = $pdo->supprimer($id,$mois);
             $numAnnee =substr( $mois,0,4);
             $numMois =substr( $mois,4,2);
             $libEtat = $lesInfosFicheFrais['libEtat'];

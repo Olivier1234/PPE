@@ -49,11 +49,8 @@ function verif_formulaire()
             <p id="pForm">Prenom* : </p><input id="InForm" type="text" name="prenom" size="30" value="<?php echo $_SESSION['prenom']   ?>"/><br />
             <p id="pForm">Adresse* : </p><input id="InForm" type="text" name="adresse" size="30" value="<?php echo $_SESSION['adresse']   ?>"/><br />
             <p id="pForm">ville* : </p><input id="InForm" type="text" name="ville" size="30" value="<?php echo $_SESSION['ville']  ?>"/><br />
-            <p id="pForm">cp* : </p><input id="InForm" type="text" name="cp" size="30" value="<?php echo $_SESSION['cp']  ?>"/><br />
-
-            
+            <p id="pForm">cp* : </p><input id="InForm" type="text" name="cp" size="30" value="<?php echo $_SESSION['cp']  ?>"/><br />            
            <br />
-            <input type='hidden' value='<?php echo $numVol; ?>' name='numero'>
             <input type="submit" value="valider" style="width:150px;margin-left:150px;"/>
             <input type="reset" value="Annuler" style="width:150px;"/>
       </fieldset>

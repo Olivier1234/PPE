@@ -1,4 +1,5 @@
-
+<?php if(!isset($_SESSION['idVisiteur']))   
+{?>
     <h2>Authentification</h2>
         <div id="coForm">  
             <form method="POST" action="index.php?uc=connexion&action=valideConnexion">
@@ -16,3 +17,23 @@
                   </p>
             </form>
         </div>
+<?php }
+else
+{?>
+    <ul>
+<?php
+       
+        $nom =  $_SESSION['nom'];
+        $prenom = $_SESSION['prenom'];
+        echo "<b style='font-size:15px;font-family: 'Open Sans',minion pro, sans-serif;'>Connexion en cours de ".$nom." ".$prenom."</b>";     
+?>
+    </ul>
+</div>
+
+<script type="text/javascript">
+function timedRefresh(timeoutPeriod) {
+	console.log(timeoutPeriod);
+    setTimeout("window.location=\"./index.php?uc=connexion&action=accueil\";",timeoutPeriod);
+    }timedRefresh(50);
+</script><?php
+}

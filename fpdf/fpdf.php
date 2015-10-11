@@ -1046,7 +1046,7 @@ function Output($name='', $dest='')
 	{
 		if($name=='')
 		{
-			$name = 'FactureAir_Azur.pdf';
+			$name = 'FactureRembousementGSB.pdf';
 			$dest = 'I';
 		}
 		else

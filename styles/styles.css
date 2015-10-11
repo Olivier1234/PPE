@@ -296,11 +296,12 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 
 /* Styles pour les tableaux de la page principale */
 #contenu table {
-   background-color:#FFF;
-   border : 0.1em solid #777777;
-   color:black;
-   margin-right : auto ;
-   margin-left:0.3em;
+    background-color:#FFF;
+    border : 0.1em solid #777777;
+    color:black;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
    border-collapse : collapse;
 }
 

@@ -41,7 +41,7 @@
                                 }
 		?>
                 
-               <td class="qteForfait"><input type="text" value="<?php echo $quantite?>" name="<?php echo $i?>"> </td>
+               <td class="qteForfait"><input type="text"id="inputFrais" value="<?php echo $quantite?>" name="<?php echo $i?>"> </td>
 		 <?php
           }
           ?>  <td><input type="submit"  value="Actualiser"></td>
