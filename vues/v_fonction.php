@@ -8,5 +8,7 @@
                         $montantValide = $lesInfosFicheFrais['montantValide'];
                         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
                         $dateModif =  $lesInfosFicheFrais['dateModif'];
-                        $dateModif =  dateAnglaisVersFrancais($dateModif);?>
+                        $dateModif =  dateAnglaisVersFrancais($dateModif);
+                        
+                        ?>
                         

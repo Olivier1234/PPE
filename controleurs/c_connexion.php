@@ -30,8 +30,11 @@ switch($action){
 			$id = $visiteur['id'];
 			$nom =  $visiteur['nom'];
 			$prenom = $visiteur['prenom'];
+                        $ville = $visiteur['ville'];
+			$adresse =  $visiteur['adresse'];
+			$cp = $visiteur['cp'];
                         $type = $visiteur['typeVisiteur'];
-                        connecter($id,$nom,$prenom,$type);  
+                        connecter($id,$nom,$prenom,$type,$ville,$cp,$adresse);  
                         include("vues/v_sommaire.php"); 
                         include("vues/v_accueil.php");
                     }

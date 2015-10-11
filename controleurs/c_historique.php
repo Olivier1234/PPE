@@ -5,6 +5,8 @@ $action = $_REQUEST['action'];
 
 switch($action){
         case 'historique':{
+            $date=date('Y-m-d');
+           
 		$lesMois=$pdo->getMoisEtat();
 		$lesCles = array_keys( $lesMois );
                 if(isset($_REQUEST['lstMois']))
@@ -23,7 +25,7 @@ switch($action){
                         include("vues/v_fonction.php");
                         include("vues/v_etatFraisComptable.php");                        
                     }
-                } 
+                }   
                 break;
              }
                 
@@ -93,7 +95,8 @@ switch($action){
                 break;
         }
         
-        case 'Valider':{
+        case 'Valider':{ 
+                $date=date('Y-m-d');
                 $lesMois=$pdo->getMoisEtat();
 		$lesCles = array_keys( $lesMois );
 		$moisASelectionner = $lesCles[0];
@@ -101,11 +104,12 @@ switch($action){
                 $idVisiteur= $_REQUEST['idVisiteur'];
                 include("vues/v_listeMoisValider.php");
                 $total=  $_REQUEST['total'];
-                $pdo->valider($idVisiteur,$moisVal,$total);     
+                $pdo->valider($idVisiteur,$moisVal,$total,$date);     
                 break;           
         }
         
         case 'justificatif':{
+               
                 $lesMois=$pdo->getMoisEtat();
 		$lesCles = array_keys( $lesMois );
 		$moisASelectionner = $lesCles[0];

@@ -2,9 +2,7 @@
     <div id="menuGauche">
      <div id="infosUtil">
     
-        <h2>
-    
-    </h2>
+       
     
        </div> <?php      
         if(isset($_SESSION['type']))
@@ -32,6 +30,9 @@
                  <ul id="menuList">
                     <li>
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
+                    </li>
+                     <li class="smenu">
+                        <a href="index.php?uc=connexion&action=accueil" >Accueil</a>
                     </li>
                     <li class="smenu">
                         <a href="index.php?uc=ValiderVisiteur&action=historique" >Valider fiches Frais</a>

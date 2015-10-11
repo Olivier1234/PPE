@@ -54,7 +54,8 @@ class PdoGsb{
  * @return l'id, le nom et le prénom sous la forme d'un tableau associatif 
 */
 	public function getInfosVisiteur($login, $mdp){
-		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom, visiteur.typeVisiteur as typeVisiteur
+		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom, visiteur.typeVisiteur as typeVisiteur,visiteur.adresse as adresse,
+                    visiteur.cp as cp, visiteur.ville as ville
                     from visiteur 
 		where visiteur.login='$login' and visiteur.mdp='$mdp'";
 		$rs = PdoGsb::$monPdo->query($req);
@@ -411,10 +412,12 @@ public function getMois(){
             
     }
     
-    function valider($id,$mois,$total){
+    function valider($id,$mois,$total,$date){
             $updateVal="update fichefrais set idEtat ='VA' where idVisiteur='$id' and mois ='$mois'";
             PdoGsb::$monPdo->exec($updateVal);
             $updateVal="update fichefrais set montantValide=$total where idVisiteur ='$id' and mois='$mois'";
+            PdoGsb::$monPdo->exec($updateVal);   
+            $updateVal="update fichefrais set dateModif='$date' where idVisiteur ='$id' and mois='$mois'";
             PdoGsb::$monPdo->exec($updateVal);   
     }
     
@@ -575,6 +578,18 @@ public function getMois(){
             $pdf->MultiCell(70,7, utf8_decode("Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." $\nMontant refusé :".$vpdf['montRefuse']."\nFait le : ".$vpdf['dateNow'].""), 1, "R", 0);
             $pdf->Output();
         }
- 
+ function changerInfosVisiteur($idVisiteur,$nom,$prenom,$ville,$cp,$adresse){
+     $sql="update visiteur set nom='$nom' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set prenom='$prenom' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set ville='$ville' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set cp='$cp' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      $sql="update visiteur set adresse='$adresse' where id='$idVisiteur'";
+      PdoGsb::$monPdo->exec($sql);   
+      
+ }
 }
 ?>
