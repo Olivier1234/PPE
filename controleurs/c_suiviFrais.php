@@ -1,6 +1,11 @@
-﻿<?php
-include("vues/v_sommaire.php");
+<?php
 $action = $_REQUEST['action'];
+if($action != "vuPdf")
+{
+    include("vues/v_sommaire.php");
+}
+
+
 
 switch($action){
     
@@ -38,7 +43,12 @@ switch($action){
         else
         {
             include("vues/v_listFraisValider.php");
-        }
-    }
+        } 
+    }break;
+    case 'vuPdf':{
+        $vpdf = $pdo->creerPDF();
+        include("vues/v_creationPdf.php");
+        $pdo->afficherPDF($vpdf);
+    }break;
     
 }

@@ -1,20 +1,25 @@
 <?php
-
 require_once("include/fct.inc.php");
 require_once ("include/class.pdogsb.inc.php");
-include("vues/v_entete.php") ;
-session_start();
-
-$pdo = PdoGsb::getPdoGsb();
-$estConnecte = estConnecte();
-if(!isset($_REQUEST['uc']) || !$estConnecte){
-     $_REQUEST['uc'] = 'connexion';
-    }
-else
-    { 
- 
+if(!isset($_REQUEST['uc'])){
+	$_REQUEST['uc'] = 'connexion';
 }
 $uc = $_REQUEST['uc'];
+
+if($uc != "voirPdf")
+{
+    include("vues/v_entete.php") ;
+}
+session_start();
+
+    $pdo = PdoGsb::getPdoGsb();
+    $estConnecte = estConnecte();
+    if(!isset($_REQUEST['uc']) || !$estConnecte)
+        {
+            $_REQUEST['uc'] = 'connexion';
+        }
+
+
 switch($uc){
 	case 'connexion':{
 		include("controleurs/c_connexion.php");break;
@@ -31,12 +36,9 @@ switch($uc){
         case 'suiviFrais':{
                 include("controleurs/c_suiviFrais.php");break;
         }
- 
-        
-            
-         
-         
+        case 'voirPdf':{
+            include("controleurs/c_suiviFrais.php");break;
+        }break;     
 }
-
 include("vues/v_pied.php") ;
 ?>

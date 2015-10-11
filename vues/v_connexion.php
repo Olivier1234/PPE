@@ -1,4 +1,4 @@
-﻿<div id="contenu">
+
     <h2>Authentification</h2>
         <div id="coForm">  
             <form method="POST" action="index.php?uc=connexion&action=valideConnexion">
@@ -16,4 +16,3 @@
                   </p>
             </form>
         </div>
-</div>

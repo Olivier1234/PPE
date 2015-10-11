@@ -10,7 +10,7 @@
   <body>
     <div id="page">
       <div id="entete">
-        <a href="index.php?uc=connexion&action=accueil"><img src="./images/logo.jpg" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" /></a>
+        <a href="index.php?uc=connexion&action=accueil"><img src="./images/logo.png" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" /></a>
         <h1 id="enH1"> GSB - Frais</h1>
         <h1 id="enH1_1"> Gestion de remboursement des frais</h1>
       </div>

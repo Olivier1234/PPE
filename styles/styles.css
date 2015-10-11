@@ -127,7 +127,10 @@ ul#menuList a:hover {
 #coP{
     height: 12%;
 }
-
+#inputFrais{
+    width:100%;
+    
+}
 #coInput{
     width: 70%;
     height: 26px;

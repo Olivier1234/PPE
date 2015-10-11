@@ -54,7 +54,7 @@ foreach($_SESSION['listFraisR'] as $fiche => $cle)
             . "<td>".$cle["montantValide"]." €</td>"
             . "<td style='width:15%;' > ".$cle["dateModif"]."</td>"
             . "<td>".$cle["idEtat"]."</td>"
-            . "<td style='width: 9%;padding-left: 2%;padding-right: 2%;'><a  id ='aDetail' href='index.php?uc=suiviFrais&action=listRembourser&numeroPDF=$fiche'> <img src='images/pdf_logo.jpg'/> </a> </td>");
+            . "<td style='width: 9%;padding-left: 2%;padding-right: 2%;'><a target='_blank' id ='aDetail' href='index.php?uc=voirPdf&action=vuPdf&numeroPDF=$fiche'> <img src='images/pdf_logo.jpg'/> </a> </td>");
     echo"</tr>";
     
 }

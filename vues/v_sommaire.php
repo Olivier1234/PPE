@@ -1,4 +1,4 @@
-﻿    <!-- Division pour le sommaire -->
+    <!-- Division pour le sommaire -->
     <div id="menuGauche">
      <div id="infosUtil">
     
@@ -7,8 +7,9 @@
     </h2>
     
        </div> <?php      
-       
-        if($_SESSION['type'] == "commercial")
+        if(isset($_SESSION['type']))
+        {
+            if($_SESSION['type'] == "commercial")
             {
                 ?>
                 <ul id="menuList">
@@ -26,7 +27,8 @@
                     </li>
                 </ul><?php
             }
-            if($_SESSION['type'] == "comptable") {  ?>            
+            if($_SESSION['type'] == "comptable") 
+                {  ?>            
                  <ul id="menuList">
                     <li>
                         Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?>
@@ -42,7 +44,16 @@
                     </li>
                                     
                 </ul>
-                   <?php } ?>
+        <?php   }       
+        }
+        else
+        {?>
+            <ul id="menuList">
+                    <li>
+                         <?php echo"Bienvenue <br>Meci de vous connecter";?>
+                    </li>
+            <ul>
+  <?php }?>
                     
                  
     </div>
