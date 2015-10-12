@@ -21,9 +21,10 @@ body{
         background-color: rgba(218, 218, 188,0.5);
         color: #353535;
         border: solid 0.1em #A7A7A7;
-        height: 25%;
+        min-height: 18%;
         padding: 1em;
 	border-collapse: separate;
+        margin-bottom:2%;
 }
 #pied{
   clear : both;
@@ -54,8 +55,8 @@ body{
 
 /* pour r�tablir le mauvais effet sur les nav. modernes */
 html>body #contenu{
-  min-height:63.5%;
-  max-height:63.5%;
+  min-height:66.5%;
+  max-height:66.5%;
   overflow: auto; 
 }
 #contenu::-webkit-scrollbar {
@@ -152,6 +153,16 @@ ul#menuList a:hover {
     border-radius: 4px;
     margin-top: 20px;
 }    
+#supA{
+    color: #FFF;
+    text-decoration: none;
+    background-color: rgba(0, 103, 204, 0.7);
+    width: 59%;
+    height: 18%;
+    border:outset;
+    margin-top: 20px;
+    padding: 0%;
+}
 
 #divSuivi{
     width:100%;
@@ -299,8 +310,9 @@ taille de caract�res l�g�rement sup�rieure � la normale */
    background-color:#FFF;
    border : 0.1em solid #777777;
    color:black;
+   width:100%;
    margin-right : auto ;
-   margin-left:0.3em;
+   margin-left:auto;
    border-collapse : collapse;
 }
 

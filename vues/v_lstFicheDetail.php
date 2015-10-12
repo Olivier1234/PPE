@@ -76,7 +76,7 @@
   </div>
 <form action="index.php?uc=suiviFrais&action=listFrais" method="POST">
     <input type="hidden" name ="numero" value ="<?php echo $num ;?>">
-    <input type="submit" id="inputRembourser" value="Rembourser" name="rembourser">
+    <input style="height: 50px;width:50%;margin-right: auto;margin-left: 24%;"type="submit" id="vaInput" value="Rembourser" name="rembourser">
 </form>
 <?php 
 

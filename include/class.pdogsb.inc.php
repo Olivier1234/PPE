@@ -512,7 +512,7 @@ public function getMois(){
         // affichage de la liste frais Valider VA
         public function lstFraisValider(){
  		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'VA' "
-                        . "order by id,mois ";
+                        . "order by mois desc,id ";
 		$res = PdoGsb::$monPdo->query($req);
 		$lstFraisV = $res->fetchall();
 		return $lstFraisV;           
@@ -520,7 +520,7 @@ public function getMois(){
         // Affichage de la liste des frais rembourser du dernier mois -1 
         public function lstFraisRembourser(){
                 $mois = $this->dernierMois();
-                $mois = $mois -1;
+                $mois = $mois -2;
  		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'RB' and mois='".$mois."' order by dateModif desc,mois ";
                 $res = PdoGsb::$monPdo->query($req);
 		$lstFraisV = $res->fetchall();

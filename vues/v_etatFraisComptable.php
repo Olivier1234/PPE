@@ -3,7 +3,7 @@
     </h3>
     <div class="encadre">
     <p>
-        Etat : <?php echo $libEtat?> depuis le <?php echo $dateModif?> <br> Montant validé : <?php echo $montantValide?>
+        Etat : <?php echo $libEtat?> depuis le <?php echo $dateModif?> <br>
               
                      
     </p>
@@ -11,9 +11,6 @@
   	   <caption>Eléments forfaitisés </caption>
         <tr>
          <?php
-         /*
-         * boucle fiche frais forfait , affiche libelle frais forfait
-         */
          foreach ( $lesFraisForfait as $unFraisForfait ) 
 		 {
 			$libelle = $unFraisForfait['libelle'];
@@ -51,7 +48,7 @@
                <td class="qteForfait"><input type="text"id="inputFrais" value="<?php echo $quantite?>" name="<?php echo $i?>"> </td>
 		 <?php
           }
-          ?>  <td><input type="submit"  value="Actualiser"></td>
+          ?>  <td><input type="submit"  style="background-color: rgba(255, 0, 0, 0.6);width:100%;"  value="Actualiser"></td>
 		</tr>
     </table> 
      <input type="hidden" name="lstMois" value="<?php echo $mois?>">
@@ -69,7 +66,7 @@
              </tr>
         <?php     
         $_session['frais']=array();
-        /*
+         /*
          * boucle fiche frais hors forfait affiche les frais corespondant a 
          * l'utilisateur et le mois, ajoute  les prix des frais a au total.
          * creation des session pour chaque fiche frais hors forfait
@@ -93,13 +90,13 @@
                         
 		?>
              
-              <tr>
+              <tr style="min-height:30px;">
                 <td><?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
                 <td><?php echo $montant ?></td>
                 
-                <td> <a href="index.php?uc=ValiderVisiteur&lstMois=<?php echo $mois?>&idVisiteur=<?php echo $idVisiteur?>&action=supprimer&key=<?php echo $key;?>"> supprimer </a>
-                 <a href="index.php?uc=ValiderVisiteur&action=reporter&key=<?php echo $key;?>"> Reporter </a></td>
+                <td><center  style="line-height:1.8;"> <a id="supA" href="index.php?uc=ValiderVisiteur&lstMois=<?php echo $mois?>&idVisiteur=<?php echo $idVisiteur?>&action=supprimer&key=<?php echo $key;?>"> Supprimer </a></br>
+                 <a id="supA" style="background-color: rgba(255, 0, 0, 0.6) ; " href="index.php?uc=ValiderVisiteur&action=reporter&key=<?php echo $key;?>"> Reporter. </a></center></td>
               </tr>
               <?php  $totalQuantite= $totalQuantite+$montant;
 
@@ -139,9 +136,9 @@
 <form action="index.php?uc=ValiderVisiteur&action=Valider&total=<?php echo $totalQuantite;?>" method="POST">
     
     <?php if(isset($mois)){ ?>
-            <input type="hidden" name="mois" value="<?php echo $mois?>">
+          <input type="hidden" name="mois" value="<?php echo $mois?>">
           <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur?>">
-          <input type="submit" value="valider" >
+          <input id="vaInput" style="height:6%;width:45%; margin-left:26%;" type="submit" value="valider" >
     <?php } ?>
 </form>
 
