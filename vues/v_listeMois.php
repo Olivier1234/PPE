@@ -7,6 +7,7 @@
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
         <select id="lstMois" name="lstMois">
+           
             <?php
 			foreach ($lesMois as $unMois)
 			{

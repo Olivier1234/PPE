@@ -1,4 +1,4 @@
-<h2>Liste visiteur valider</h2>
+<h2>Liste visiteurs validés</h2>
     <table>
         <tr style='text-align:center;'>
             <td> Id </td>
@@ -29,7 +29,7 @@ foreach($_SESSION['listFraisV'] as $fiche => $cle)
 }
 ?>
     </table>
-<h2>Liste visiteur Rembourser</h2>
+<h2>Liste visiteurs Remboursés</h2>
     <table>
         <tr style='text-align:center;'>
             <td> Id </td>

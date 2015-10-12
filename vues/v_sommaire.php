@@ -159,7 +159,7 @@
                         <a href="index.php?uc=ValiderVisiteur&action=historique" >Valider fiches Frais</a>
                     </li>
                     <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;">
-                        <a href="index.php?uc=suiviFrais&action=listFrais">Rembousement des frais </a>
+                        <a href="index.php?uc=suiviFrais&action=listFrais">Rembouser  frais </a>
                     </li>
                     <li class="last" >
                         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>

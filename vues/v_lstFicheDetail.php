@@ -61,6 +61,7 @@
                 	$date = $unsupprimer['date'];
 			$libelle = $unsupprimer['libelle'];
 			$montant = $unsupprimer['montant'];
+                        
 		?>
              <tr>
                  
@@ -73,6 +74,7 @@
              </tr>
           <?php  }  ?>
     </table>
+   
   </div>
 <form action="index.php?uc=suiviFrais&action=listFrais" method="POST">
     <input type="hidden" name ="numero" value ="<?php echo $num ;?>">

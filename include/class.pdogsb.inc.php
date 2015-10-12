@@ -520,7 +520,7 @@ public function getMois(){
         // Affichage de la liste des frais rembourser du dernier mois -1 
         public function lstFraisRembourser(){
                 $mois = $this->dernierMois();
-                $mois = $mois -2;
+                $mois = $mois -1;
  		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'RB' and mois='".$mois."' order by dateModif desc,mois ";
                 $res = PdoGsb::$monPdo->query($req);
 		$lstFraisV = $res->fetchall();

@@ -6,6 +6,7 @@
 	 
         <label for="lstMois" accesskey="n">Visiteur : </label>
         <select id="lstMois" name="idVisiteur">
+            <option selected >... </option>
             <?php
 			
             if($_REQUEST["idVisiteur"]) {

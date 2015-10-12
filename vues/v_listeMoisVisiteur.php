@@ -8,6 +8,7 @@
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
         <select id="lstMois" name="lstMois">
+          
             <?php
 
                 foreach ($lesMois as $unMois)
@@ -64,7 +65,7 @@
 			{ 
                     if($idVisiteurclic==$unMois["id"]){
                             ?>
-				<option  value="<?php echo $unMois["id"]  ?>" selected><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
+				<option  value="<?php echo $unMois["id"]  ?>" ><?php echo  " ".$unMois['prenom']." ".$unMois['nom']." " ?> </option>
 				<?php 			
 			} else{
                             ?>

@@ -1,4 +1,4 @@
-<h2>Liste visiteur valider</h2>
+<h2>Liste fiche validée</h2>
 <?php
 $id = $_SESSION['listFraisV'][$num]["id"];
 $nom = $_SESSION['listFraisV'][$num]["nom"];

@@ -8,6 +8,7 @@
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
         <select id="lstMois" name="lstMois">
+             <option selected >... </option>
             <?php
             
              
@@ -54,7 +55,7 @@
                                
 				if($mois == $moisASelectionner){
 				?>
-				<option selected value="<?php echo $mois ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
+				<option  value="<?php echo $mois ?>" ><?php echo  $numMois."/".$numAnnee ?> </option>
 				<?php 
 				}
 				else{ ?>

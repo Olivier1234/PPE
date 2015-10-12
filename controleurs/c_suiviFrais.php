@@ -34,14 +34,17 @@ switch($action){
             $montantValide = $lesInfosFicheFrais['montantValide'];
             $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
             $dateModifi =  $lesInfosFicheFrais['dateModif'];
-            $dateModif =  dateAnglaisVersFrancais($dateModifi);  
+            $dateModif =  dateAnglaisVersFrancais($dateModifi); 
+            
             if(isset($_REQUEST['rembourser']))
             {
                 $pdo->Rembourser($id,$mois,$nbJustificatifs,$montantValide,$dateModifi,$idEtat); 
+                
                 include("vues/v_Remboursement.php");
             }
             else
             {
+                
                 include("vues/v_lstFicheDetail.php");
             }
         }
