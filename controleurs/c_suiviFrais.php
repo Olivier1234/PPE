@@ -8,7 +8,11 @@ if($action != "vuPdf")
 
 
 switch($action){
-    
+    //case listFrais  
+        //affichage des frais valider
+            // creation de la SESSION listFraisV =
+        //affichage des frais rembourser
+            // creation de la SESSION listFraisR
     case 'listFrais':{
         $lstFraisV = $pdo->lstFraisValider();
         $_SESSION['listFraisV'] = array();
@@ -18,12 +22,12 @@ switch($action){
         $_SESSION['listFraisR'] = $lstFraisR; 
         if(isset($_REQUEST['numero']))
         {
-            $num = $_REQUEST['numero'];
-            include("vues/v_listVisiteurDetail.php");
+            $num = $_REQUEST['numero']; // récupération du POST
+            include("vues/v_listVisiteurDetail.php");// include vu
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($id,$mois);
             $lesFraisForfait= $pdo->getLesFraisForfait($id,$mois);
             $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($id,$mois);
-            $supprimer = $pdo->supprimer($id,$mois);
+            $supprimer = $pdo->supprimer($id,$mois); //recupération des fichefraishorsforfaitrefuser
             $numAnnee =substr( $mois,0,4);
             $numMois =substr( $mois,4,2);
             $libEtat = $lesInfosFicheFrais['libEtat'];
@@ -46,6 +50,10 @@ switch($action){
             include("vues/v_listFraisValider.php");
         } 
     }break;
+    // case vuPdf
+       // creation du pdf
+       // include vu 
+       // affichage du pdf
     case 'vuPdf':{
         $vpdf = $pdo->creerPDF();
         include("vues/v_creationPdf.php");

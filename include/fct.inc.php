@@ -21,7 +21,11 @@ function estConnecte(){
  * @param $nom
  * @param $prenom
  * @param $type
+ * @param $ville
+ * @param $cp
+ * @param $adresse
  */
+
 function connecter($id,$nom,$prenom,$type,$ville,$cp,$adresse){
   
 	$_SESSION['idVisiteur'] = $id; // $_SESSION['id']

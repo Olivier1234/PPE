@@ -11,6 +11,9 @@
   	   <caption>Eléments forfaitisés </caption>
         <tr>
          <?php
+         /*
+         * boucle fiche frais forfait , affiche libelle frais forfait
+         */
          foreach ( $lesFraisForfait as $unFraisForfait ) 
 		 {
 			$libelle = $unFraisForfait['libelle'];
@@ -24,6 +27,10 @@
         <tr>
         <?php
         $totalQuantite=0;
+        /*
+         * boucle fiche frais forfait affiche les frais corespondant a 
+         * l'utilisateur et le mois, calcule le prix des frais forfait de l'utilisateur
+         */
           foreach (  $lesFraisForfait as $i=>$unFraisForfait  ) 
 		  {
 				$quantite = $unFraisForfait['quantite'];
@@ -62,6 +69,11 @@
              </tr>
         <?php     
         $_session['frais']=array();
+        /*
+         * boucle fiche frais hors forfait affiche les frais corespondant a 
+         * l'utilisateur et le mois, ajoute  les prix des frais a au total.
+         * creation des session pour chaque fiche frais hors forfait
+         */
           foreach ( $lesFraisHorsForfait as $key => $unFraisHorsForfait ) 
 		  { 
                    
@@ -92,7 +104,9 @@
               <?php  $totalQuantite= $totalQuantite+$montant;
 
                      }
-                     
+                     /*
+                     boucle qui affiche les frais hors forfait refuse de l'utilisateur choisi
+                       */
                  foreach ( $supprimer as  $unsupprimer ) 
 		  { 
                 	$date = $unsupprimer['date'];

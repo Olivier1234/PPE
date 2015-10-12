@@ -5,8 +5,14 @@ $action = $_REQUEST['action'];
 
 switch($action){
         case 'historique':{
-            $date=date('Y-m-d');
-           
+                /*
+                 * affiche les mois ou il y a des frais à valider
+                 * si le mois a ete choisi dmet la vue du choix visiteur correspondant au mois
+                 * garde le mois en selected
+                 * affiche les fiches frais ,fiche frais horsforfait et fiche frais hors forfait refuse si les 
+                 * visiteur et mois son selectionner
+                 */
+                $date=date('Y-m-d');
 		$lesMois=$pdo->getMoisEtat();
 		$lesCles = array_keys( $lesMois );
                 if(isset($_REQUEST['lstMois']))
@@ -31,6 +37,10 @@ switch($action){
                 
           
           case 'supprimer':{
+                    /*supprime la ligne dans frais hors forfait 
+                     * ajoute la ligne hors forfait dans hors forfait  refuse 
+                     * 
+                     */
                      $lesMois=$pdo->getMoisEtat();
                      $lesCles = array_keys( $lesMois );
                      $moisASelectionner = $lesCles[0];
