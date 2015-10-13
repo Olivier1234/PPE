@@ -113,7 +113,7 @@
              <tr>
                  <?php  ;?>
                 <td><?php echo $date ?></td>
-                <td><?php echo " refusé ".$libelle ?></td>
+                <td><?php echo $libelle ?></td>
                 <td><?php echo $montant ?></td>
                 
               <?php  }  ?>

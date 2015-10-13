@@ -12,6 +12,7 @@ switch($action){
                  * affiche les fiches frais ,fiche frais horsforfait et fiche frais hors forfait refuse si les 
                  * visiteur et mois son selectionner
                  */
+             
                 $date=date('Y-m-d');
 		$lesMois=$pdo->getMoisEtat();
 		$lesCles = array_keys( $lesMois );
@@ -29,7 +30,8 @@ switch($action){
                     {                     
                         $idVisiteur = $_REQUEST['idVisiteur'];
                         include("vues/v_fonction.php");
-                        include("vues/v_etatFraisComptable.php");                        
+                        include("vues/v_etatFraisComptable.php");   
+                        
                     }
                 }   
                 break;
@@ -52,15 +54,17 @@ switch($action){
                      $dateA=$_SESSION['frais'][$key]['date'];
                      $libelle=$_SESSION['frais'][$key]['libelle'];
                      $date=dateFrancaisVersAnglais($dateA);
+                      $libelle2="refusé $libelle";
+                      
+           
+        
                      $pdo->addVisteurRefuse($idForfait,$idVisiteur,$mois,$libelle,$date,$montant);
                      $listVisiteur=$pdo->getVisiteurMois($mois);
-                     
                    include("vues/v_listeMoisValider.php");
                    include("vues/v_visiteurMois.php");  
                    include("vues/v_fonction.php");  
                    include("vues/v_etatFraisComptable.php");
-
-  
+                   
                     
                 break;
         }
@@ -80,8 +84,7 @@ switch($action){
                 include("vues/v_listeMoisValider.php");              
                 include("vues/v_visiteurMois.php");
                 include("vues/v_fonction.php");
-                include("vues/v_etatFraisComptable.php");
-                          
+                include("vues/v_etatFraisComptable.php");  
                 break;     
         }
         
@@ -102,6 +105,7 @@ switch($action){
                 include("vues/v_visiteurMois.php");  
                 include("vues/v_fonction.php");
                 include("vues/v_etatFraisComptable.php");
+                
                 break;
         }
         
@@ -114,7 +118,8 @@ switch($action){
                 $idVisiteur= $_REQUEST['idVisiteur'];
                 include("vues/v_listeMoisValider.php");
                 $total=  $_REQUEST['total'];
-                $pdo->valider($idVisiteur,$moisVal,$total,$date);     
+                $pdo->valider($idVisiteur,$moisVal,$total,$date);    
+                 
                 break;           
         }
         
@@ -132,6 +137,7 @@ switch($action){
                 include("vues/v_visiteurMois.php");
                 include("vues/v_fonction.php");
                 include("vues/v_etatFraisComptable.php");    
+                
                 break;           
         }
 

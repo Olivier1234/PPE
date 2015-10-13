@@ -391,7 +391,10 @@ public function getMois(){
         
         function addVisteurRefuse($id,$idVisiteur,$mois,$libelle,$date,$montant){
         
-             $sql="insert into lignefraishorsforfaitrefuse values($id,'$idVisiteur','$mois','$libelle','$date',$montant)";
+            $libelle2="refusé $libelle";
+             $sql="update lignefraishorsforfait set libelle='$libelle2' where idVisiteur='$idVisiteur' and mois='$mois' and id='$id'";
+            PdoGsb::$monPdo->exec($sql);
+             $sql="insert into lignefraishorsforfaitrefuse values($id,'$idVisiteur','$mois','$libelle2','$date',$montant)";
             PdoGsb::$monPdo->exec($sql);
         }
         
