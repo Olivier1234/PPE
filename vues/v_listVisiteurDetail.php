@@ -1,4 +1,3 @@
-<h2>Liste fiche validée</h2>
 <?php
 $id = $_SESSION['listFraisV'][$num]["id"];
 $nom = $_SESSION['listFraisV'][$num]["nom"];
@@ -9,6 +8,7 @@ $montantValide = $_SESSION['listFraisV'][$num]["montantValide"];
 $dateModif = $_SESSION['listFraisV'][$num]["dateModif"];
 $idEtat = $_SESSION['listFraisV'][$num]["idEtat"];
 ?>
+<h2>Fiche validée de <?php echo $nom." ".$prenom ?></h2>
 <div id="ficheRem">
     <p>Fiche frais de : <?php print_r($nom." ".$prenom."<br/>"
             . "Nombre de justificatifs : ".$nbJustificatifs."") ?></p>

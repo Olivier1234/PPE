@@ -1,60 +1,50 @@
 <h2>Liste visiteurs validés</h2>
-    <table>
-        <tr style='text-align:center;'>
-            <td> Id </td>
-            <td> Nom </td>
-            <td> Prenom </td>
-            <td> Mois </td>
-            <td> Nb justficatifs</td>
-            <td> Montant valide </td>
-            <td> Date modif</td>
-            <td> IdEtat </td>
-            <td> Vu détaillé </td>
-            
+    <table class="listeLegere">
+        <tr>
+            <th style="text-align: left;padding:0.2em;font-size:1.1em;"> Nom </th>
+            <th style="text-align: left;padding:0.2em;font-size:1.1em;"> Prenom </th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Justficatifs</th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Montant</th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Date</th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Etat </th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Vue détaillée </th>
         </tr>
 <?php
 foreach($_SESSION['listFraisV'] as $fiche => $cle)
 {   echo"<tr style='text-align:center;'>";    
-    print_r("<td>".$cle["id"]."</td>"
-            . "<td>".$cle["nom"]."</td>"
-            . "<td>".$cle["prenom"]."</td>"
-            . "<td style='width:10%;'>".$cle["mois"]."</td>"
-            . "<td >".$cle["nbJustificatifs"]."</td>"
-            . "<td>".$cle["montantValide"]." €</td>"
-            . "<td style='width:15%;' > ".$cle["dateModif"]."</td>"
-            . "<td>".$cle["idEtat"]."</td>"
-            . "<td style='width: 17%;'><a  id ='aDetail' href='index.php?uc=suiviFrais&action=listFrais&numero=$fiche'> Fiche détaillée </a> </td>");
+    print_r("<td style='text-align:left;'>".$cle["nom"]."</td>"
+            . "<td style='text-align:left;'>".$cle["prenom"]."</td>"
+            . "<td style='text-align:center;'>".$cle["nbJustificatifs"]."</td>"
+            . "<td style='text-align:center;'>".$cle["montantValide"]." €</td>"
+            . "<td style='width:15%;text-align:center;' > ".$cle["dateModif"]."</td>"
+            . "<td style='text-align:center;'>".$cle["idEtat"]."</td>"
+            . "<td style='width: 20%;text-align: center;'><a  id ='aDetail' style=''href='index.php?uc=suiviFrais&action=listFrais&numero=$fiche'> Fiche détaillée </a> </td>");
     echo"</tr>";
     
 }
 ?>
-    </table>
+    </table><br/>
 <h2>Liste visiteurs Remboursés</h2>
-    <table>
-        <tr style='text-align:center;'>
-            <td> Id </td>
-            <td> Nom </td>
-            <td> Prenom </td>
-            <td> Mois </td>
-            <td> Nb justficatifs</td>
-            <td> Montant valide </td>
-            <td> Date modif</td>
-            <td> IdEtat </td>
-            <td> Vu détaillé </td>
-            
+    <table class="listeLegere">
+        <tr>
+            <th style="text-align: left;padding:0.2em;font-size:1.1em;"> Nom </th>
+            <th style="text-align: left;padding:0.2em;font-size:1.1em;"> Prenom </th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Justficatifs</th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Montant</th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Date</th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Etat </th>
+            <th style="text-align: center;padding:0.2em;font-size:1.1em;"> Vue détaillée </th>
         </tr>
-<?php
+<?php 
 foreach($_SESSION['listFraisR'] as $fiche => $cle)
 {   echo"<tr style='text-align:center;'>";    
-    print_r("<td>".$cle["id"]."</td>"
-            . "<td style='width:15%;'>".$cle["nom"]."</td>"
-            . "<td style='width:15%;'>".$cle["prenom"]."</td>"
-            . "<td style='width:10%;'>".$cle["mois"]."</td>"
-            . "<td >".$cle["nbJustificatifs"]."</td>"
-            . "<td>".$cle["montantValide"]." €</td>"
-            . "<td style='width:15%;' > ".$cle["dateModif"]."</td>"
-            . "<td>".$cle["idEtat"]."</td>"
-            . "<td style='width: 9%;padding-left: 2%;padding-right: 2%;'><a target='_blank' id ='aDetail' href='index.php?uc=voirPdf&action=vuPdf&numeroPDF=$fiche'> <img src='images/pdf_logo.jpg'/> </a> </td>");
+    print_r("<td style='padding-top: 15px;text-align:left;'>".$cle["nom"]."</td>"
+            . "<td style='text-align:left;padding-top: 15px;'>".$cle["prenom"]."</td>"
+            . "<td style='text-align:center;padding-top: 15px;'>".$cle["nbJustificatifs"]."</td>"
+            . "<td style='text-align:center;padding-top: 15px;'>".$cle["montantValide"]." €</td>"
+            . "<td style='width:15%;padding-top: 15px;text-align:center;'> ".$cle["dateModif"]."</td>"
+            . "<td style='text-align:center;padding-top: 15px;'>".$cle["idEtat"]."</td>"
+            . "<td style='width: 20%;padding-left: 7%;text-align:center;padding-right: 5%;'><a target='_blank' href='index.php?uc=voirPdf&action=vuPdf&numeroPDF=$fiche'> <img src='images/pdf_logo.jpg' title='voir Pdf'/> </a> </td>");
     echo"</tr>";
     
 }

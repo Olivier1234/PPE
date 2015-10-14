@@ -152,16 +152,16 @@
                     
                      <h3 style="margin-left:25px;">Comptable :<br> <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']?></h3>
                    
-                     <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;">
+                     <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;height: 30px;margin-left: 0px;">
                         <a href="index.php?uc=connexion&action=accueil" >Accueil</a>
                     </li>
-                    <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;">
+                    <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;height: 30px;margin-left: 0px;">
                         <a href="index.php?uc=ValiderVisiteur&action=historique" >Valider fiches Frais</a>
                     </li>
-                    <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;">
+                    <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;height: 30px;margin-left: 0px;">
                         <a href="index.php?uc=suiviFrais&action=listFrais">Rembouser  frais </a>
                     </li>
-                    <li class="last" >
+                    <li class="smenu" style="color:lightblue;text-decoration:none; border:0px;height: 30px;margin-left: 0px;"  >
                         <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
                     </li>
                                     

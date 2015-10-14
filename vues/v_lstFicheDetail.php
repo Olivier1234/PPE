@@ -9,27 +9,26 @@
   	<table class="listeLegere">
   	   <caption>Eléments forfaitisés </caption>
         <tr>
+            <th>Description</th>
+            <th>Quantité</th>
+            <th>Montant unitaire</th>
+            <th style="text-align:right;">Total</th>
+        </tr>
+        
          <?php
          foreach ( $lesFraisForfait as $unFraisForfait ) 
-		 {
-			$libelle = $unFraisForfait['libelle'];
-		?>	
-			<th> <?php echo $libelle?></th>
-		 <?php
-        }
-		?>
-		</tr>
-        <tr>
-        <?php
-          foreach (  $lesFraisForfait as $unFraisForfait  ) 
-		  {
-				$quantite = $unFraisForfait['quantite'];
-		?>
-                <td class="qteForfait"><?php echo $quantite?> </td>
-		 <?php
-          }
-		?>
-		</tr>
+	{
+            $libelle = $unFraisForfait['libelle'];
+            $quantite = $unFraisForfait['quantite'];
+            $montant = $unFraisForfait['montant'];
+            $total = $montant * $quantite ?>
+            <tr>
+                <th> <?php echo $libelle?></th>
+                <td style="text-align:center;"><?php echo $quantite?> </td>
+                <td style="text-align:center;"><?php echo $montant." €"?> </td>
+                <td style="text-align:right;"><?php echo $total." €"?> </td>        
+            </tr><?php
+        }?>
     </table>
   	<table class="listeLegere">
   	   <caption>Descriptif des éléments hors forfait -<?php echo $nbJustificatifs ?> justificatifs reçus -
@@ -52,7 +51,7 @@
              <tr>
                 <td><?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
-                <td><?php echo $montant ?></td>                           
+                <td style="text-align:right;"><?php echo $montant." €" ?></td>                           
              </tr>
         <?php 
           }
@@ -67,7 +66,7 @@
                  
                 <td><?php echo $date ?></td>
                 <td><?php echo " refusé ".$libelle ?></td>
-                <td><?php echo $montant ?></td>
+                <td style="text-align:right;"><?php echo $montant." €" ?></td>
                 
               
                             

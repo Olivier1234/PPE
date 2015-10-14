@@ -137,10 +137,10 @@ public function getMois(){
 */
 	public function getLesFraisForfait($idVisiteur, $mois){
 		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, 
-		lignefraisforfait.quantite as quantite from lignefraisforfait inner join fraisforfait 
+		lignefraisforfait.quantite as quantite,fraisforfait.montant as montant from lignefraisforfait inner join fraisforfait 
 		on fraisforfait.id = lignefraisforfait.idfraisforfait
 		where lignefraisforfait.idvisiteur ='$idVisiteur' and lignefraisforfait.mois='$mois' 
-		order by lignefraisforfait.idfraisforfait";	
+		order by lignefraisforfait.idfraisforfait";		
 		$res = PdoGsb::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes; 
@@ -515,7 +515,7 @@ public function getMois(){
         // affichage de la liste frais Valider VA
         public function lstFraisValider(){
  		$req = "select id,mois,nom,prenom,nbJustificatifs,montantValide,dateModif,idEtat  from fichefrais, visiteur  where visiteur.id = fichefrais.idVisiteur and fichefrais.idEtat = 'VA' "
-                        . "order by mois desc,id ";
+                        . "order by dateModif desc,id ";
 		$res = PdoGsb::$monPdo->query($req);
 		$lstFraisV = $res->fetchall();
 		return $lstFraisV;           
@@ -657,13 +657,8 @@ public function getMois(){
             $pdf->Table("select date,libelle,montant  from lignefraishorsforfait lf where lf.mois='".$vpdf['mois']."' and lf.idVisiteur='".$vpdf['id']."' "
                     . "UNION ALL (select date,libelle,montant as idlfr from lignefraishorsforfaitrefuse lfr where lfr.mois='".$vpdf['mois']."' and lfr.idVisiteur='".$vpdf['id']."')",$prop);
             $pdf->SetXY(10, 200);
-            $pdf->MultiCell(190,7, utf8_decode('Eléments hors forfait refusé'), 1, "L", 0);
-            $pdf->AddCol('date',35,'','Date');
-            $pdf->AddCol('libelle',105,'Libelle');
-            $pdf->AddCol('montant',50,'Montant','R');
-            $pdf->Table("select date,libelle,montant  from lignefraishorsforfaitrefuse where mois='".$vpdf['mois']."' and idVisiteur='".$vpdf['id']."'",$prop);
             $pdf->SetXY(130, 230);
-            $pdf->MultiCell(70,7,"Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." ".html_entity_decode($vpdf['euros'])."\nNombre de justificatifs : ".$vpdf['nbJust']." ".utf8_decode("\nMontant refusé :").$vpdf['montRefuse']." ".html_entity_decode($vpdf['euros'])."\nFait le : ".$vpdf['dateNow']."", 1, "R", 0);
+            $pdf->MultiCell(70,7,"Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." ".html_entity_decode($vpdf['euros'])."\nNombre de justificatifs : ".$vpdf['nbJust']." fiche(s)".utf8_decode("\nMontant refusé :").$vpdf['montRefuse']." ".html_entity_decode($vpdf['euros'])."\nFait le : ".$vpdf['dateNow']."", 1, "R", 0);
             $pdf->Output();
         }
 }

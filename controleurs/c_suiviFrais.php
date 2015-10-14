@@ -35,7 +35,6 @@ switch($action){
             $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
             $dateModifi =  $lesInfosFicheFrais['dateModif'];
             $dateModif =  dateAnglaisVersFrancais($dateModifi); 
-            
             if(isset($_REQUEST['rembourser']))
             {
                 $pdo->Rembourser($id,$mois,$nbJustificatifs,$montantValide,$dateModifi,$idEtat); 
@@ -59,7 +58,6 @@ switch($action){
        // affichage du pdf
     case 'vuPdf':{
         $vpdf = $pdo->creerPDF();
-        include("vues/v_creationPdf.php");
         $pdo->afficherPDF($vpdf);
     }break;
     

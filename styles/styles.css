@@ -3,18 +3,19 @@ body{
     background-color: #77AADD;
     background-image: url(imgs/FONDGLOBAL.jpg);
     background-repeat: repeat-x;
-    margin:0% 0%;
-    padding : 0.6em;
     font-family:"Trebuchet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
     font-size:0.8em;
+    width:auto;
+    height:auto;
 }
 #page {
     background-color:white;
-    width : 70%;
+    max-width: 1000px;
+    min-width: 1000px;
     margin-left : auto ;
     margin-right : auto ;
     border : 0.2em solid black;
-    padding : 0.1em;
+    max-height: 96.5%;
     height:96.5%;
 }
 #entete{
@@ -46,17 +47,20 @@ body{
 
 #contenu{
     border: none;
-    padding: 1.0em;
+    padding-left: 1.0em;
+    padding-bottom: 0.5em;
+    padding-right: 1.0em;
     background-color: white;
     border-left: groove 0.8em #000099;
     margin-left: 18%;
+    margin-right: 2px;
     height: 99%;
 }
 
 /* pour r�tablir le mauvais effet sur les nav. modernes */
 html>body #contenu{
-  min-height:66.5%;
-  max-height:66.5%;
+  min-height:65.5%;
+  max-height:65.5%;
   overflow: auto; 
 }
 #contenu::-webkit-scrollbar {
@@ -267,7 +271,7 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 
 .encadre {
   border : solid 0.1em #000;
-  width : 95%;
+  width : 100%;
 }
 /* Style pour les liens de la page principale */
 #contenu .corpsTexte {
@@ -277,16 +281,24 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 #aDetail{
     font-size: 1em; 
     min-height:40px;
-    color:blue;
-    background-color: white;   
     text-decoration: none;
+    border:0.2em solid rgba(221, 220, 217, 0.7);
+    color:white;
+    background-color:rgba(67, 165, 255, 0.7);
+    padding:2px 5.5px 2px 5.5px;
 }
 #aDetail:hover{
     font-size: 1em; 
     min-height:40px;
-    color:black;
-    background-color: rgba(106, 175, 250, 0.6);  
+    color:blue;
+    background-color: rgba(255, 255, 255, 0.7);   
     text-decoration: none;
+    border:0.2em solid rgba(221, 220, 217, 0.7);
+    padding-left:5.5px;
+    color:rgba(67, 165, 255, 0.7);
+    padding-right:5.5px;
+    padding-top:2px;
+    padding-bottom:2px;
 }
 /* Style pour les liens de la page principale */
 /*#contenu a {
@@ -335,8 +347,9 @@ taille de caract�res l�g�rement sup�rieure � la normale */
     font-size : 1.2em;
 }
 table.listeLegere {
-/*    width:80%;*/
-    margin-bottom : 0.5em;
+    width:80%;
+    padding-top: 10px;
+    margin-bottom: 0.5em;
 }
 
 /* Tableaux quadrill�s utilis�s pour l'affichage de listes avec contenu l�ger*/ 
@@ -383,7 +396,8 @@ table.listeLegere th.libelle{
 }
 
 #contenu img {
-  height : 28px;
+  height : 40px;
+  width:auto;
   float : left;
 
 }
