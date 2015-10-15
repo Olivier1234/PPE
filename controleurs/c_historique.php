@@ -25,7 +25,7 @@ switch($action){
                 include("vues/v_listeMoisValider.php");
                 if(isset($_REQUEST['lstMois']))
                 {
-                    if($_REQUEST['lstMois'] != 0)
+                    if($_REQUEST['lstMois'] != '...')
                     {
                     $listVisiteur=$pdo->getVisiteurMois($mois);
                     include("vues/v_visiteurMois.php");                   

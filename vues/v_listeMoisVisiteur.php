@@ -53,7 +53,7 @@
       <p>
 	 
         <label for="lstMois" accesskey="n">Visiteur : </label>
-        <select id="lstMois" name="idVisiteur" value="0">
+        <select id="lstMois" name="idVisiteur" value="...">
             <?php
 	
                    
