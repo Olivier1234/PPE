@@ -20,20 +20,27 @@ switch($action){
                 {   
                     $mois =$_REQUEST['lstMois'];  
                 }
+                
 		$moisASelectionner = $lesCles[0];
                 include("vues/v_listeMoisValider.php");
                 if(isset($_REQUEST['lstMois']))
-                {    
+                {
+                    if($_REQUEST['lstMois'] != 0)
+                    {
                     $listVisiteur=$pdo->getVisiteurMois($mois);
                     include("vues/v_visiteurMois.php");                   
                     if(isset($_REQUEST['idVisiteur']))
-                    {                     
-                        $idVisiteur = $_REQUEST['idVisiteur'];
-                        include("vues/v_fonction.php");
-                        include("vues/v_etatFraisComptable.php");   
-                        
+                    {
+                        if($_REQUEST['idVisiteur'] != '...')
+                        {
+                            $idVisiteur = $_REQUEST['idVisiteur'];
+                            include("vues/v_fonction.php");
+                            include("vues/v_etatFraisComptable.php");   
+                        }
                     }
-                }   
+                    }
+                }
+                
                 break;
              }
                 

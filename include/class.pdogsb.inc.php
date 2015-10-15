@@ -658,7 +658,7 @@ public function getMois(){
                     . "UNION ALL (select date,libelle,montant as idlfr from lignefraishorsforfaitrefuse lfr where lfr.mois='".$vpdf['mois']."' and lfr.idVisiteur='".$vpdf['id']."')",$prop);
             $pdf->SetXY(10, 200);
             $pdf->SetXY(130, 230);
-            $pdf->MultiCell(70,7,"Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." ".html_entity_decode($vpdf['euros'])."\nNombre de justificatifs : ".$vpdf['nbJust']." fiche(s)".utf8_decode("\nMontant refusé :").$vpdf['montRefuse']." ".html_entity_decode($vpdf['euros'])."\nFait le : ".$vpdf['dateNow']."", 1, "R", 0);
+            $pdf->MultiCell(70,7,"Total du ".$vpdf['numMois']." / ".$vpdf['numAnnee']." : ".$vpdf['montVal']." ".html_entity_decode($vpdf['euros'])."\nNombre de justificatifs : ".$vpdf['nbJust']." fiche(s)".utf8_decode("\nMontant refusé : ").$vpdf['montRefuse']." ".html_entity_decode($vpdf['euros'])."\nFait le : ".$vpdf['dateNow']."", 1, "R", 0);
             $pdf->Output();
         }
 }
